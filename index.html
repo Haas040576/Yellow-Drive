@@ -1,0 +1,1327 @@
+<!doctype html>
+<!DOCTYPE html>
+
+<html data-standalone="true" lang="de">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="Fahrschule Yellow-Drive in Murnau: Auto, BF17, B197, Anhänger, Motorrad, Mofa und Klasse L. Persönliche Beratung bei Stefan Bartl." name="description"/>
+<meta content="#e8ff38" name="theme-color"/>
+<meta content="Fahrschule Yellow-Drive | Mit Ruhe zum Führerschein" property="og:title"/>
+<meta content="Persönliche Fahrausbildung in Murnau – Auto, Motorrad, Anhänger und Landwirtschaft." property="og:description"/>
+<meta content="website" property="og:type"/>
+<meta content="https://www.yellow-drive.de/" property="og:url"/>
+<meta content="https://www.yellow-drive.de/assets/og-yellow-drive.png" property="og:image"/>
+<link href="https://www.yellow-drive.de/" rel="canonical"/>
+<link href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+CiAgPHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiByeD0iMTYiIGZpbGw9IiNlOGZmMzgiLz4KICA8cGF0aCBkPSJNMTkgNThjMC0xNCAxMC0yMCAxOC0yOCA3LTggNy0xNSAzLTI1IiBmaWxsPSJub25lIiBzdHJva2U9IiMxNTE3MTYiIHN0cm9rZS13aWR0aD0iMTIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgogIDxwYXRoIGQ9Ik0xOSA1OGMwLTE0IDEwLTIwIDE4LTI4IDctOCA3LTE1IDMtMjUiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2Y3ZjVlZiIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1kYXNoYXJyYXk9IjUgNyIvPgo8L3N2Zz4K" rel="icon" type="image/svg+xml"/>
+<style>:root {
+  --yellow: #e8ff38;
+  --yellow-soft: #f2ff91;
+  --ink: #151716;
+  --ink-2: #252826;
+  --muted: #666b67;
+  --paper: #f7f5ef;
+  --offwhite: #eeede7;
+  --white: #ffffff;
+  --sage: #aebca5;
+  --line: rgba(21, 23, 22, .15);
+  --line-light: rgba(255, 255, 255, .16);
+  --radius-sm: 14px;
+  --radius-md: 24px;
+  --radius-lg: 38px;
+  --shadow: 0 28px 80px rgba(10, 12, 11, .14);
+  --shell: min(1240px, calc(100vw - 48px));
+  --header-h: 84px;
+  --ease: cubic-bezier(.22, 1, .36, 1);
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  color: var(--ink);
+  background: var(--paper);
+  font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.55;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+body.menu-open { overflow: hidden; }
+a { color: inherit; text-decoration: none; }
+img, svg { display: block; max-width: 100%; }
+button, input, select, textarea { font: inherit; }
+button { color: inherit; }
+::selection { background: var(--yellow); color: var(--ink); }
+
+.shell { width: var(--shell); margin-inline: auto; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+.skip-link { position: fixed; top: 10px; left: 10px; z-index: 9999; transform: translateY(-150%); background: var(--yellow); color: var(--ink); padding: 10px 16px; border-radius: 8px; font-weight: 800; }
+.skip-link:focus { transform: none; }
+
+.site-header {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: 1000;
+  height: var(--header-h);
+  transition: background .35s ease, box-shadow .35s ease, transform .35s ease;
+}
+.site-header.is-scrolled { background: rgba(247, 245, 239, .9); backdrop-filter: blur(18px); box-shadow: 0 1px 0 rgba(21, 23, 22, .09); }
+.header-inner { height: 100%; display: flex; align-items: center; justify-content: space-between; gap: 26px; }
+.brand { display: inline-flex; align-items: center; flex: 0 0 auto; }
+.brand img { width: 188px; height: auto; }
+.desktop-nav { display: flex; align-items: center; gap: 32px; margin-left: auto; }
+.desktop-nav a { font-size: .92rem; font-weight: 700; position: relative; }
+.desktop-nav a::after { content: ""; position: absolute; left: 0; right: 100%; bottom: -7px; height: 2px; background: var(--ink); transition: right .25s var(--ease); }
+.desktop-nav a:hover::after, .desktop-nav a:focus-visible::after { right: 0; }
+.header-actions { display: flex; align-items: center; gap: 14px; }
+.header-phone { font-size: .9rem; font-weight: 800; white-space: nowrap; }
+.menu-toggle { display: none; width: 44px; height: 44px; border: 0; background: transparent; padding: 10px; cursor: pointer; }
+.menu-toggle span:not(.sr-only) { display: block; height: 2px; background: var(--ink); margin: 5px 0; transition: transform .25s ease, opacity .25s ease; }
+.menu-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.menu-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+.menu-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+.mobile-menu { position: fixed; inset: var(--header-h) 0 0; padding: 28px 24px; background: var(--paper); display: grid; align-content: start; gap: 4px; }
+.mobile-menu[hidden] { display: none; }
+.mobile-menu a { padding: 16px 4px; border-bottom: 1px solid var(--line); font-size: 1.3rem; font-weight: 800; }
+
+.button { min-height: 52px; padding: 14px 23px; border: 1px solid transparent; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; gap: 9px; font-weight: 800; letter-spacing: -.01em; transition: transform .25s var(--ease), background .25s ease, color .25s ease, border-color .25s ease, box-shadow .25s ease; cursor: pointer; }
+.button:hover { transform: translateY(-2px); }
+.button:active { transform: translateY(0); }
+.button-primary { background: var(--yellow); color: var(--ink); box-shadow: 0 10px 28px rgba(232, 255, 56, .16); }
+.button-primary:hover { background: #f0ff67; box-shadow: 0 14px 34px rgba(232, 255, 56, .22); }
+.button-dark { background: var(--ink); color: var(--white); }
+.button-dark:hover { background: #2a2d2b; }
+.button-ghost { background: transparent; border-color: rgba(21, 23, 22, .28); }
+.button-ghost:hover { border-color: var(--ink); }
+.button-small { min-height: 44px; padding: 10px 18px; font-size: .9rem; }
+.button-full { width: 100%; }
+.text-link { display: inline-flex; align-items: center; gap: 12px; font-weight: 800; border-bottom: 1px solid currentColor; padding-bottom: 6px; }
+.text-link span { transition: transform .2s ease; }
+.text-link:hover span { transform: translateX(5px); }
+
+.hero { min-height: 100svh; padding: calc(var(--header-h) + 64px) 0 58px; position: relative; overflow: hidden; background: radial-gradient(circle at 83% 12%, rgba(232,255,56,.33), transparent 24%), var(--paper); }
+.hero::before { content: ""; position: absolute; width: 560px; height: 560px; border: 1px solid rgba(21,23,22,.08); border-radius: 50%; right: -220px; top: 22%; }
+.hero-grid { display: grid; grid-template-columns: minmax(0, 1.02fr) minmax(420px, .98fr); gap: clamp(48px, 7vw, 110px); align-items: center; }
+.hero-copy { padding-top: 30px; position: relative; z-index: 2; }
+.eyebrow { display: inline-flex; align-items: center; gap: 12px; margin-bottom: 22px; text-transform: uppercase; letter-spacing: .15em; font-size: .72rem; font-weight: 900; color: var(--muted); }
+.eyebrow::before { content: ""; width: 30px; height: 2px; background: var(--yellow); }
+.hero-title { margin: 0; max-width: 730px; font-size: clamp(4.1rem, 7.5vw, 7.7rem); line-height: .88; letter-spacing: -.07em; font-weight: 850; }
+.hero-title span { display: inline-block; position: relative; }
+.hero-title span::after { content: ""; position: absolute; z-index: -1; left: -.03em; right: -.02em; bottom: .05em; height: .18em; background: var(--yellow); transform: skewX(-9deg); }
+.hero-lead { max-width: 650px; margin: 32px 0 0; font-size: clamp(1.1rem, 2vw, 1.38rem); line-height: 1.55; color: #4b504d; }
+.hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 35px; }
+.hero-trust { display: flex; flex-wrap: wrap; gap: 10px 25px; margin-top: 42px; color: var(--muted); font-size: .83rem; font-weight: 800; text-transform: uppercase; letter-spacing: .06em; }
+.hero-trust span { display: inline-flex; align-items: center; gap: 9px; }
+.hero-trust span::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--yellow); box-shadow: 0 0 0 4px rgba(232,255,56,.22); }
+.hero-visual { position: relative; min-height: 670px; display: flex; justify-content: center; align-items: center; }
+.road-card { width: min(490px, 88%); aspect-ratio: 640 / 760; border-radius: 34px; overflow: hidden; box-shadow: 0 40px 110px rgba(9, 10, 10, .28); transform: rotate(3deg); transition: transform .15s linear; position: relative; z-index: 2; }
+.road-card svg { width: 100%; height: 100%; }
+.road-dash { animation: roadFlow 2.5s linear infinite; }
+@keyframes roadFlow { to { stroke-dashoffset: -84; } }
+.hero-orbit { position: absolute; border: 1px solid rgba(21,23,22,.16); border-radius: 50%; }
+.orbit-one { width: 550px; height: 550px; animation: orbit 18s linear infinite; }
+.orbit-one::after { content: ""; position: absolute; width: 16px; height: 16px; border-radius: 50%; background: var(--yellow); top: 34px; left: 118px; box-shadow: 0 0 0 8px rgba(232,255,56,.16); }
+.orbit-two { width: 420px; height: 420px; border-style: dashed; opacity: .6; animation: orbitReverse 24s linear infinite; }
+@keyframes orbit { to { transform: rotate(360deg); } }
+@keyframes orbitReverse { to { transform: rotate(-360deg); } }
+.floating-card { position: absolute; z-index: 3; padding: 17px 20px; border-radius: 18px; background: rgba(255,255,255,.88); backdrop-filter: blur(18px); border: 1px solid rgba(255,255,255,.75); box-shadow: 0 20px 50px rgba(10,12,11,.16); }
+.floating-card strong, .floating-card span, .floating-card a { display: block; }
+.floating-card strong { font-size: .95rem; }
+.floating-card span, .floating-card a { margin-top: 4px; color: var(--muted); font-size: .82rem; line-height: 1.35; }
+.floating-card-top { top: 12%; left: 0; }
+.floating-card-bottom { bottom: 12%; right: -2%; }
+.hero-scroll { position: absolute; left: 28px; bottom: 48px; display: flex; align-items: center; gap: 12px; text-transform: uppercase; letter-spacing: .16em; font-size: .66rem; font-weight: 900; color: var(--muted); writing-mode: vertical-rl; }
+.hero-scroll span { width: 1px; height: 56px; background: var(--ink); position: relative; overflow: hidden; }
+.hero-scroll span::after { content: ""; position: absolute; inset: -100% 0 auto; height: 100%; background: var(--yellow); animation: scrollLine 2s ease-in-out infinite; }
+@keyframes scrollLine { 0% { transform: translateY(0); } 65%,100% { transform: translateY(200%); } }
+
+.section-dark { background: var(--ink); color: var(--white); }
+.section-light { background: var(--paper); }
+.section-offwhite { background: var(--offwhite); }
+.quick-path { padding: 120px 0 128px; }
+.section-heading { max-width: 780px; }
+.section-heading h2 { margin: 0; font-size: clamp(2.5rem, 5vw, 4.8rem); line-height: 1.02; letter-spacing: -.055em; }
+.section-heading p { margin: 25px 0 0; color: var(--muted); font-size: 1.08rem; max-width: 680px; }
+.section-heading-light .eyebrow { color: rgba(255,255,255,.55); }
+.section-heading-light h2 { color: var(--white); }
+.quick-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 58px; }
+.quick-card { min-height: 340px; border: 1px solid var(--line-light); border-radius: var(--radius-md); padding: 30px; display: flex; flex-direction: column; position: relative; overflow: hidden; transition: border-color .3s ease, transform .3s var(--ease), background .3s ease; }
+.quick-card::before { content: ""; position: absolute; width: 170px; height: 170px; border-radius: 50%; background: var(--yellow); right: -115px; top: -115px; transition: transform .55s var(--ease); }
+.quick-card:hover { transform: translateY(-8px); border-color: rgba(232,255,56,.55); background: #1d201e; }
+.quick-card:hover::before { transform: scale(1.6); }
+.quick-number { color: rgba(255,255,255,.45); font-size: .75rem; letter-spacing: .15em; }
+.quick-card h3 { margin: auto 0 8px; font-size: 2.25rem; letter-spacing: -.045em; }
+.quick-card p { margin: 0; color: rgba(255,255,255,.63); max-width: 260px; }
+.quick-arrow { margin-top: 26px; font-size: .88rem; font-weight: 800; color: var(--yellow); }
+
+.process { padding: 140px 0; }
+.process-grid { display: grid; grid-template-columns: .78fr 1.22fr; gap: clamp(60px, 9vw, 145px); align-items: start; }
+.process-intro { position: sticky; top: calc(var(--header-h) + 50px); }
+.process-intro .text-link { margin-top: 35px; }
+.process-track { position: relative; padding-left: 90px; min-height: 650px; display: grid; align-content: space-between; gap: 70px; }
+.process-line { position: absolute; left: 0; top: 0; bottom: 0; width: 70px; height: 100%; overflow: visible; }
+.process-line-active { stroke-dasharray: 1000; stroke-dashoffset: 1000; transition: stroke-dashoffset .12s linear; }
+.process-step { display: grid; grid-template-columns: 58px 1fr; gap: 26px; padding: 0 0 50px; border-bottom: 1px solid var(--line); }
+.process-step > span { display: grid; place-items: center; width: 54px; height: 54px; border-radius: 50%; background: var(--yellow); font-weight: 900; }
+.process-step h3 { margin: 0 0 9px; font-size: 1.75rem; letter-spacing: -.035em; }
+.process-step p { margin: 0; color: var(--muted); max-width: 530px; }
+
+.classes-section { padding: 140px 0; }
+.split-heading { max-width: none; display: grid; grid-template-columns: 1.3fr .7fr; gap: 70px; align-items: end; }
+.split-heading p { margin: 0 0 4px; }
+.class-filter { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 48px; }
+.filter-button { border: 1px solid var(--line); background: transparent; border-radius: 999px; padding: 11px 18px; font-size: .88rem; font-weight: 800; cursor: pointer; transition: .2s ease; }
+.filter-button:hover, .filter-button.is-active { background: var(--ink); color: var(--white); border-color: var(--ink); }
+.class-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 24px; }
+.class-card { background: var(--paper); border-radius: var(--radius-md); border: 1px solid rgba(21,23,22,.08); overflow: clip; transition: transform .3s var(--ease), box-shadow .3s ease; }
+.class-card:hover { transform: translateY(-4px); box-shadow: 0 24px 56px rgba(14,16,15,.08); }
+.class-card[hidden] { display: none; }
+.class-card summary { list-style: none; cursor: pointer; padding: 27px 28px 26px; position: relative; }
+.class-card summary::-webkit-details-marker { display: none; }
+.class-card-head { display: flex; align-items: flex-start; gap: 18px; }
+.class-code { flex: 0 0 auto; width: 82px; min-height: 82px; display: grid; place-items: center; padding: 8px; border-radius: 18px; background: var(--ink); color: var(--yellow); font-size: 1.35rem; font-weight: 900; text-align: center; letter-spacing: -.04em; }
+.class-card-title { flex: 1; }
+.class-card-title span { display: block; color: var(--muted); text-transform: uppercase; letter-spacing: .12em; font-size: .66rem; font-weight: 900; }
+.class-card-title h3 { margin: 7px 0 5px; font-size: 1.58rem; letter-spacing: -.035em; }
+.class-card-title p { margin: 0; color: var(--muted); font-size: .94rem; }
+.class-toggle { flex: 0 0 auto; width: 36px; height: 36px; border: 1px solid var(--line); border-radius: 50%; position: relative; }
+.class-toggle::before, .class-toggle::after { content: ""; position: absolute; inset: 50% auto auto 50%; width: 12px; height: 2px; background: var(--ink); transform: translate(-50%,-50%); transition: transform .25s ease; }
+.class-toggle::after { transform: translate(-50%,-50%) rotate(90deg); }
+.class-card[open] .class-toggle::after { transform: translate(-50%,-50%) rotate(0); }
+.class-meta { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+.class-meta span { background: var(--offwhite); border-radius: 999px; padding: 7px 10px; font-size: .73rem; font-weight: 800; }
+.class-details { padding: 0 28px 28px; border-top: 1px solid var(--line); }
+.class-detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px 30px; padding-top: 26px; }
+.class-detail-grid h4 { margin: 0 0 6px; font-size: .72rem; text-transform: uppercase; letter-spacing: .11em; color: var(--muted); }
+.class-detail-grid p, .class-detail-grid ul { margin: 0; font-size: .92rem; }
+.class-detail-grid ul { padding-left: 18px; }
+.class-note { margin: 24px 0 0; padding: 16px 18px; border-left: 3px solid var(--yellow); background: rgba(232,255,56,.13); font-size: .88rem; }
+.class-sources { margin-top: 18px; display: flex; flex-wrap: wrap; gap: 8px; }
+.class-sources a { font-size: .72rem; border-bottom: 1px solid currentColor; color: var(--muted); }
+.legal-note { margin: 28px 0 0; font-size: .78rem; color: var(--muted); }
+
+.about { padding: 145px 0; overflow: hidden; }
+.about-grid { display: grid; grid-template-columns: .7fr 1.3fr; gap: clamp(65px, 10vw, 160px); align-items: center; }
+.about-visual { min-height: 610px; border-radius: var(--radius-lg); border: 1px solid var(--line-light); position: relative; overflow: hidden; padding: 42px; display: flex; flex-direction: column; justify-content: flex-end; background: radial-gradient(circle at 78% 18%, rgba(232,255,56,.95) 0 13%, rgba(232,255,56,.12) 13.5% 26%, transparent 26.5%), linear-gradient(145deg, #222522, #0c0d0d); }
+.about-visual::before { content: ""; position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px); background-size: 48px 48px; mask-image: linear-gradient(to bottom, black, transparent 85%); }
+.about-number { position: absolute; top: 40px; left: 40px; font-size: clamp(5rem, 10vw, 9rem); line-height: .8; letter-spacing: -.1em; font-weight: 900; color: transparent; -webkit-text-stroke: 1px rgba(255,255,255,.22); }
+.about-line { width: 1px; height: 180px; background: linear-gradient(var(--yellow), transparent); margin-left: 10px; margin-bottom: 22px; }
+.about-visual p { margin: 0; position: relative; font-size: clamp(2.2rem, 4vw, 4rem); line-height: 1; letter-spacing: -.055em; font-weight: 850; }
+.about-copy .eyebrow { color: rgba(255,255,255,.52); }
+.about-copy h2 { margin: 0; font-size: clamp(3.3rem, 6vw, 6.2rem); line-height: .96; letter-spacing: -.065em; }
+.about-lead { margin: 30px 0 0; color: rgba(255,255,255,.68); font-size: 1.15rem; max-width: 720px; }
+.about-values { margin-top: 55px; display: grid; grid-template-columns: 1fr 1fr; gap: 0; border-top: 1px solid var(--line-light); }
+.about-values article { padding: 26px 28px 28px 0; border-bottom: 1px solid var(--line-light); }
+.about-values article:nth-child(odd) { border-right: 1px solid var(--line-light); padding-right: 28px; }
+.about-values article:nth-child(even) { padding-left: 28px; }
+.about-values span { color: var(--yellow); font-size: .72rem; font-weight: 900; }
+.about-values h3 { margin: 8px 0 5px; font-size: 1.35rem; }
+.about-values p { margin: 0; color: rgba(255,255,255,.58); font-size: .9rem; }
+
+.choice-section { padding: 140px 0; }
+.choice-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: clamp(60px, 8vw, 125px); align-items: center; }
+.choice-copy h2 { margin: 0; font-size: clamp(3rem, 5vw, 5.2rem); line-height: .98; letter-spacing: -.06em; }
+.choice-copy p { margin: 28px 0 32px; color: var(--muted); font-size: 1.08rem; max-width: 620px; }
+.choice-panels { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; align-items: stretch; }
+.choice-card { min-height: 430px; padding: 28px; border-radius: var(--radius-md); border: 1px solid var(--line); display: flex; flex-direction: column; justify-content: flex-end; background: linear-gradient(180deg, transparent, rgba(21,23,22,.04)); position: relative; overflow: hidden; }
+.choice-card::before { content: ""; position: absolute; width: 150px; height: 240px; border: 46px solid var(--ink); border-radius: 90px; top: 38px; left: 50%; transform: translateX(-50%) rotate(12deg); opacity: .08; }
+.choice-card span { position: absolute; top: 25px; left: 28px; font-size: .7rem; text-transform: uppercase; letter-spacing: .14em; font-weight: 900; }
+.choice-card h3 { margin: 0 0 8px; font-size: 1.75rem; letter-spacing: -.04em; }
+.choice-card p { margin: 0; color: var(--muted); }
+.choice-card-accent { background: var(--yellow); border-color: var(--yellow); transform: translateY(36px); }
+.choice-card-accent::before { border-color: var(--ink); opacity: .12; }
+.choice-card-accent p { color: rgba(21,23,22,.7); }
+
+.info-band { background: var(--yellow); padding: 0; }
+.info-band-grid { display: grid; grid-template-columns: repeat(4, 1fr); }
+.info-band-grid > div { min-height: 180px; padding: 34px 28px; border-right: 1px solid rgba(21,23,22,.18); display: flex; flex-direction: column; justify-content: space-between; }
+.info-band-grid > div:last-child { border-right: 0; }
+.info-band-grid span { text-transform: uppercase; letter-spacing: .13em; font-size: .68rem; font-weight: 900; color: rgba(21,23,22,.6); }
+.info-band-grid strong { font-size: 1.15rem; line-height: 1.5; }
+.info-band-grid a { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px; }
+
+.faq { padding: 140px 0; }
+.faq-grid { display: grid; grid-template-columns: .72fr 1.28fr; gap: clamp(55px, 8vw, 125px); align-items: start; }
+.faq-list { border-top: 1px solid var(--line); }
+.faq-item { border-bottom: 1px solid var(--line); }
+.faq-item summary { list-style: none; cursor: pointer; padding: 25px 50px 25px 0; font-size: 1.15rem; font-weight: 800; position: relative; }
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary span::before, .faq-item summary span::after { content: ""; position: absolute; right: 7px; top: 50%; width: 15px; height: 2px; background: var(--ink); transition: transform .25s ease; }
+.faq-item summary span::after { transform: rotate(90deg); }
+.faq-item[open] summary span::after { transform: rotate(0); }
+.faq-item p { margin: -5px 0 25px; padding-right: 48px; color: var(--muted); }
+
+.contact { padding: 145px 0; }
+.contact-grid { display: grid; grid-template-columns: .82fr 1.18fr; gap: clamp(55px, 8vw, 120px); align-items: start; }
+.contact-copy .eyebrow { color: rgba(255,255,255,.52); }
+.contact-copy h2 { margin: 0; font-size: clamp(3.2rem, 5.7vw, 5.8rem); line-height: .96; letter-spacing: -.065em; }
+.contact-copy > p { margin: 28px 0 0; color: rgba(255,255,255,.65); font-size: 1.08rem; max-width: 560px; }
+.contact-direct { margin-top: 42px; border-top: 1px solid var(--line-light); }
+.contact-direct a { display: flex; justify-content: space-between; gap: 20px; padding: 17px 0; border-bottom: 1px solid var(--line-light); }
+.contact-direct span { color: rgba(255,255,255,.48); font-size: .82rem; }
+.contact-direct strong { text-align: right; font-size: .95rem; }
+.route-link { display: inline-block; margin-top: 28px; color: var(--yellow); font-weight: 800; }
+.contact-form { background: var(--paper); color: var(--ink); padding: 34px; border-radius: var(--radius-md); box-shadow: var(--shadow); }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+.contact-form label { display: grid; gap: 8px; margin-bottom: 15px; font-size: .77rem; text-transform: uppercase; letter-spacing: .08em; font-weight: 900; color: #4e534f; }
+.contact-form input, .contact-form select, .contact-form textarea { width: 100%; border: 1px solid rgba(21,23,22,.2); background: #fff; color: var(--ink); border-radius: 12px; padding: 13px 14px; outline: 0; text-transform: none; letter-spacing: normal; transition: border-color .2s ease, box-shadow .2s ease; }
+.contact-form textarea { resize: vertical; min-height: 120px; }
+.contact-form input:focus, .contact-form select:focus, .contact-form textarea:focus { border-color: var(--ink); box-shadow: 0 0 0 3px rgba(232,255,56,.55); }
+.consent { grid-template-columns: 20px 1fr !important; align-items: start; text-transform: none !important; letter-spacing: normal !important; font-weight: 500 !important; font-size: .78rem !important; line-height: 1.45; }
+.consent input { width: 17px; height: 17px; padding: 0; margin-top: 2px; accent-color: var(--ink); }
+.consent a { text-decoration: underline; }
+.honeypot { position: absolute !important; left: -9999px !important; }
+.form-status { min-height: 22px; margin: 12px 0 0; font-size: .82rem; color: var(--muted); text-align: center; }
+.form-status.is-success { color: #2d6a3c; }
+.form-status.is-error { color: #9a2e2e; }
+
+.site-footer { background: #0d0e0e; color: var(--white); padding: 70px 0 28px; }
+.footer-top { display: grid; grid-template-columns: 1.1fr 1fr .9fr .65fr; gap: 45px; padding-bottom: 58px; }
+.footer-brand { align-self: start; }
+.footer-top > div > span { display: block; color: rgba(255,255,255,.42); text-transform: uppercase; letter-spacing: .13em; font-size: .66rem; font-weight: 900; margin-bottom: 14px; }
+.footer-top p { margin: 0; color: rgba(255,255,255,.72); line-height: 1.85; font-size: .88rem; }
+.footer-top a:hover { color: var(--yellow); }
+.footer-bottom { border-top: 1px solid rgba(255,255,255,.1); padding-top: 24px; display: flex; justify-content: space-between; gap: 24px; color: rgba(255,255,255,.43); font-size: .76rem; }
+.footer-bottom nav { display: flex; gap: 22px; }
+.footer-bottom a:hover { color: var(--white); }
+.mobile-action-bar { display: none; }
+
+.reveal { opacity: 0; transform: translateY(30px); transition: opacity .8s var(--ease), transform .8s var(--ease); }
+.reveal.is-visible { opacity: 1; transform: translateY(0); }
+.reveal-delay-1 { transition-delay: .08s; }
+.reveal-delay-2 { transition-delay: .16s; }
+.reveal-delay-3 { transition-delay: .24s; }
+.reveal-delay-4 { transition-delay: .32s; }
+
+.legal-page { min-height: 100vh; padding: calc(var(--header-h) + 70px) 0 100px; background: var(--paper); }
+.legal-shell { width: min(860px, calc(100vw - 48px)); margin: 0 auto; }
+.legal-page h1 { font-size: clamp(3rem, 7vw, 5.5rem); line-height: .95; letter-spacing: -.065em; margin: 0 0 42px; }
+.legal-page h2 { margin-top: 40px; font-size: 1.45rem; }
+.legal-page h3 { margin-top: 26px; font-size: 1.05rem; }
+.legal-page p, .legal-page li { color: #4e534f; }
+.legal-page a { text-decoration: underline; text-underline-offset: 3px; }
+.legal-box { padding: 22px; border-radius: 16px; background: var(--offwhite); border-left: 4px solid var(--yellow); margin: 28px 0; }
+.source-list { display: grid; gap: 12px; padding: 0; list-style: none; }
+.source-list li { padding: 16px 18px; background: var(--white); border: 1px solid var(--line); border-radius: 12px; }
+
+@media (max-width: 1100px) {
+  :root { --shell: min(100% - 36px, 980px); }
+  .desktop-nav { display: none; }
+  .header-phone { display: none; }
+  .menu-toggle { display: block; }
+  .hero-grid { grid-template-columns: 1fr 430px; gap: 28px; }
+  .hero-title { font-size: clamp(4rem, 8.5vw, 6.4rem); }
+  .hero-visual { min-height: 590px; }
+  .floating-card-top { left: -18px; }
+  .floating-card-bottom { right: -5px; }
+  .process-grid, .faq-grid { grid-template-columns: 1fr; }
+  .process-intro { position: static; }
+  .process-track { margin-top: 20px; }
+  .about-grid { grid-template-columns: .85fr 1.15fr; gap: 55px; }
+  .choice-grid { grid-template-columns: 1fr; }
+  .choice-copy { max-width: 800px; }
+  .choice-panels { max-width: 760px; }
+  .info-band-grid { grid-template-columns: 1fr 1fr; }
+  .info-band-grid > div:nth-child(2) { border-right: 0; }
+  .info-band-grid > div:nth-child(-n+2) { border-bottom: 1px solid rgba(21,23,22,.18); }
+}
+
+@media (max-width: 820px) {
+  :root { --shell: calc(100% - 30px); --header-h: 72px; }
+  .brand img { width: 164px; }
+  .header-actions .button { display: none; }
+  .hero { padding-top: calc(var(--header-h) + 60px); min-height: auto; }
+  .hero-grid { grid-template-columns: 1fr; }
+  .hero-copy { padding-top: 0; }
+  .hero-title { font-size: clamp(3.9rem, 15vw, 6.6rem); }
+  .hero-visual { min-height: 610px; margin-top: 25px; }
+  .road-card { width: min(460px, 84%); }
+  .hero-scroll { display: none; }
+  .quick-path, .process, .classes-section, .about, .choice-section, .faq, .contact { padding: 100px 0; }
+  .quick-grid { grid-template-columns: 1fr; }
+  .quick-card { min-height: 260px; }
+  .split-heading { grid-template-columns: 1fr; gap: 24px; }
+  .class-grid { grid-template-columns: 1fr; }
+  .about-grid { grid-template-columns: 1fr; }
+  .about-visual { min-height: 500px; }
+  .choice-panels { gap: 10px; }
+  .choice-card { min-height: 360px; }
+  .contact-grid { grid-template-columns: 1fr; }
+  .footer-top { grid-template-columns: 1fr 1fr; }
+  .footer-brand { grid-column: 1 / -1; }
+  .mobile-action-bar { position: fixed; display: grid; grid-template-columns: repeat(3, 1fr); left: 10px; right: 10px; bottom: 10px; z-index: 900; background: rgba(13,14,14,.94); backdrop-filter: blur(14px); border: 1px solid rgba(255,255,255,.14); border-radius: 16px; overflow: hidden; box-shadow: 0 20px 50px rgba(0,0,0,.24); }
+  .mobile-action-bar a { color: var(--white); text-align: center; padding: 13px 5px; font-size: .78rem; font-weight: 800; border-right: 1px solid rgba(255,255,255,.12); }
+  .mobile-action-bar a:nth-child(2) { background: var(--yellow); color: var(--ink); }
+  .mobile-action-bar a:last-child { border-right: 0; }
+  body { padding-bottom: 74px; }
+}
+
+@media (max-width: 560px) {
+  :root { --shell: calc(100% - 24px); }
+  .hero-title { font-size: clamp(3rem, 13.2vw, 3.7rem); letter-spacing: -.065em; }
+  .hero-lead { font-size: 1.03rem; }
+  .hero-actions { flex-direction: column; align-items: stretch; }
+  .hero-actions .button { width: 100%; }
+  .hero-trust { display: grid; gap: 13px; }
+  .hero-visual { min-height: 500px; }
+  .road-card { width: 84%; border-radius: 24px; }
+  .orbit-one { width: 390px; height: 390px; }
+  .orbit-two { width: 310px; height: 310px; }
+  .floating-card { padding: 13px 15px; }
+  .floating-card-top { top: 8%; left: 0; }
+  .floating-card-bottom { bottom: 8%; right: 0; }
+  .section-heading h2 { font-size: clamp(2.55rem, 13vw, 4rem); }
+  .process-track { padding-left: 0; gap: 45px; }
+  .process-line { display: none; }
+  .process-step { grid-template-columns: 48px 1fr; gap: 16px; }
+  .process-step > span { width: 46px; height: 46px; }
+  .class-card summary { padding: 22px 20px; }
+  .class-card-head { gap: 12px; }
+  .class-code { width: 62px; min-height: 62px; border-radius: 14px; font-size: 1.05rem; }
+  .class-toggle { width: 30px; height: 30px; }
+  .class-details { padding: 0 20px 22px; }
+  .class-detail-grid { grid-template-columns: 1fr; }
+  .about-visual { min-height: 430px; padding: 28px; }
+  .about-values { grid-template-columns: 1fr; }
+  .about-values article:nth-child(odd) { border-right: 0; padding-right: 0; }
+  .about-values article:nth-child(even) { padding-left: 0; }
+  .choice-panels { grid-template-columns: 1fr; }
+  .choice-card { min-height: 300px; }
+  .choice-card-accent { transform: none; }
+  .info-band-grid { grid-template-columns: 1fr; }
+  .info-band-grid > div { border-right: 0; border-bottom: 1px solid rgba(21,23,22,.18); min-height: 145px; }
+  .info-band-grid > div:last-child { border-bottom: 0; }
+  .form-row { grid-template-columns: 1fr; gap: 0; }
+  .contact-form { padding: 23px 18px; }
+  .footer-top { grid-template-columns: 1fr; }
+  .footer-bottom { flex-direction: column; }
+  .footer-bottom nav { flex-wrap: wrap; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+  .reveal { opacity: 1; transform: none; }
+}
+
+.prose-shell { max-width: 860px; }
+.legal-page .eyebrow { margin-bottom: 22px; }
+.legal-page ul { padding-left: 1.2rem; }
+.legal-page li + li { margin-top: .55rem; }
+.notice-box { margin: 30px 0; padding: 24px; border: 1px solid rgba(21,23,22,.17); background: #f2f1e9; border-radius: 18px; }
+.notice-box strong { display: block; margin-bottom: 8px; color: var(--ink); }
+.notice-box p { margin: 0; }
+
+
+/* Standalone-Rechtsdialoge */
+body.dialog-open { overflow: hidden; }
+.legal-dialog {
+  width: min(920px, calc(100vw - 28px));
+  max-height: min(88vh, 900px);
+  padding: 0;
+  border: 0;
+  border-radius: 26px;
+  background: var(--paper);
+  color: var(--ink);
+  box-shadow: 0 30px 100px rgba(0,0,0,.28);
+  overflow: hidden;
+}
+.legal-dialog::backdrop { background: rgba(11,13,12,.72); backdrop-filter: blur(7px); }
+.legal-dialog-inner { max-height: min(88vh, 900px); overflow: auto; padding: clamp(28px, 5vw, 64px); }
+.legal-dialog-top { position: sticky; top: 0; z-index: 3; display: flex; justify-content: space-between; align-items: center; gap: 20px; margin: calc(clamp(28px, 5vw, 64px) * -1) calc(clamp(28px, 5vw, 64px) * -1) 32px; padding: 18px clamp(28px, 5vw, 64px); background: rgba(247,245,239,.94); border-bottom: 1px solid rgba(21,23,22,.12); backdrop-filter: blur(12px); }
+.legal-dialog-top strong { font-size: 1rem; letter-spacing: .02em; }
+.legal-dialog-close { width: 42px; height: 42px; border: 1px solid rgba(21,23,22,.18); border-radius: 999px; background: transparent; font: inherit; font-size: 1.35rem; cursor: pointer; }
+.legal-dialog .legal-page { min-height: 0; padding: 0; background: transparent; }
+.legal-dialog .legal-page h1 { font-size: clamp(2.5rem, 7vw, 5rem); }
+.legal-dialog .prose-shell { max-width: none; }
+@media (max-width: 640px) {
+  .legal-dialog { width: calc(100vw - 14px); max-height: 94vh; border-radius: 20px; }
+  .legal-dialog-inner { max-height: 94vh; padding: 24px 20px 36px; }
+  .legal-dialog-top { margin: -24px -20px 26px; padding: 14px 20px; }
+}
+</style>
+<title>Fahrschule Murnau | Auto, Motorrad &amp; Anhänger | Yellow-Drive</title>
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": ["LocalBusiness", "EducationalOrganization"],
+    "name": "Fahrschule Yellow-Drive",
+    "url": "https://www.yellow-drive.de/",
+    "telephone": "+49 8841 3840",
+    "email": "stefanbartl@gmx.net",
+    "founder": {"@type": "Person", "name": "Stefan Bartl"},
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Reschstraße 2",
+      "postalCode": "82418",
+      "addressLocality": "Murnau am Staffelsee",
+      "addressCountry": "DE"
+    },
+    "areaServed": "Murnau am Staffelsee und Umgebung"
+  }
+  </script>
+</head>
+<body>
+<a class="skip-link" href="#main">Zum Inhalt springen</a>
+<header class="site-header" data-header="">
+<div class="shell header-inner">
+<a aria-label="Yellow-Drive Startseite" class="brand" href="#top">
+<img alt="Yellow-Drive" height="48" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0NzAgMTIwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+CiAgPHRpdGxlIGlkPSJ0aXRsZSI+WWVsbG93LURyaXZlPC90aXRsZT48ZGVzYyBpZD0iZGVzYyI+TG9nbyBkZXIgRmFocnNjaHVsZSBZZWxsb3ctRHJpdmU8L2Rlc2M+CiAgPHJlY3Qgd2lkdGg9IjQ3MCIgaGVpZ2h0PSIxMjAiIHJ4PSIyNCIgZmlsbD0ibm9uZSIvPgogIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDQgMTApIj4KICAgIDxwYXRoIGQ9Ik01MCAwYzI4IDAgNTAgMjIgNTAgNTBzLTIyIDUwLTUwIDUwUzAgNzggMCA1MCAyMiAwIDUwIDBaIiBmaWxsPSIjZThmZjM4Ii8+CiAgICA8cGF0aCBkPSJNMjUgOTFjMi0yNCAxOC0zNCAzMS00NiAxMy0xMyAxMi0yMyA2LTM2IiBmaWxsPSJub25lIiBzdHJva2U9IiMxNTE3MTYiIHN0cm9rZS13aWR0aD0iMTUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgogICAgPHBhdGggZD0iTTI2IDkxYzItMjQgMTgtMzQgMzEtNDYgMTMtMTMgMTItMjMgNi0zNiIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZjdmNWVmIiBzdHJva2Utd2lkdGg9IjIuNSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtZGFzaGFycmF5PSI2IDgiLz4KICA8L2c+CiAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMTI0IDI3KSIgZmlsbD0iIzE1MTcxNiI+CiAgICA8dGV4dCB4PSIwIiB5PSIzOCIgZm9udC1mYW1pbHk9IkFyaWFsLCBIZWx2ZXRpY2EsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iNDIiIGZvbnQtd2VpZ2h0PSI4MDAiIGxldHRlci1zcGFjaW5nPSItMiI+WUVMTE9XPC90ZXh0PgogICAgPHRleHQgeD0iMCIgeT0iNzkiIGZvbnQtZmFtaWx5PSJBcmlhbCwgSGVsdmV0aWNhLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjQyIiBmb250LXdlaWdodD0iODAwIiBsZXR0ZXItc3BhY2luZz0iLTIiPkRSSVZFPC90ZXh0PgogICAgPHJlY3QgeD0iMTQ2IiB5PSI1MiIgd2lkdGg9IjEwNCIgaGVpZ2h0PSIxMCIgcng9IjUiIGZpbGw9IiNlOGZmMzgiLz4KICA8L2c+Cjwvc3ZnPgo=" width="188"/>
+</a>
+<nav aria-label="Hauptnavigation" class="desktop-nav">
+<a href="#klassen">Führerscheine</a>
+<a href="#ablauf">So läuft es</a>
+<a href="#ueber-uns">Über uns</a>
+<a href="#faq">FAQ</a>
+</nav>
+<div class="header-actions">
+<a aria-label="Yellow-Drive anrufen" class="header-phone" href="tel:+4988413840">08841 3840</a>
+<a class="button button-small button-dark" href="#kontakt">Beratung starten</a>
+<button aria-controls="mobile-menu" aria-expanded="false" class="menu-toggle" data-menu-toggle="" type="button">
+<span></span><span></span><span></span><span class="sr-only">Menü öffnen</span>
+</button>
+</div>
+</div>
+<div class="mobile-menu" data-mobile-menu="" hidden="" id="mobile-menu">
+<a href="#klassen">Führerscheine</a>
+<a href="#ablauf">So läuft es</a>
+<a href="#ueber-uns">Über uns</a>
+<a href="#faq">FAQ</a>
+<a href="#kontakt">Kontakt</a>
+</div>
+</header>
+<main id="main">
+<section class="hero" id="top">
+<div class="hero-grid shell">
+<div class="hero-copy">
+<div class="eyebrow reveal">Fahrschule in Murnau am Staffelsee</div>
+<h1 class="hero-title reveal reveal-delay-1">Mit Ruhe zum<br/><span>Führerschein.</span></h1>
+<p class="hero-lead reveal reveal-delay-2">Persönliche Fahrausbildung für Auto, Motorrad, Anhänger und Landwirtschaft – klar erklärt und direkt erreichbar.</p>
+<div class="hero-actions reveal reveal-delay-3">
+<a class="button button-primary" href="#kontakt">Beratung anfragen</a>
+<a class="button button-ghost" href="#klassen">Klasse auswählen</a>
+</div>
+<div aria-label="Wichtige Vorteile" class="hero-trust reveal reveal-delay-4">
+<span>Murnau</span>
+<span>Schaltung &amp; Automatik</span>
+<span>Persönlicher Kontakt</span>
+</div>
+</div>
+<div aria-hidden="true" class="hero-visual">
+<div class="hero-orbit orbit-one"></div>
+<div class="hero-orbit orbit-two"></div>
+<div class="road-card" data-parallax="0.07">
+<svg aria-label="Abstrakte Straße als Symbol für die Fahrausbildung" role="img" viewbox="0 0 640 760">
+<defs>
+<lineargradient id="roadBg" x1="0" x2="1" y1="0" y2="1">
+<stop offset="0" stop-color="#282b2a"></stop>
+<stop offset="1" stop-color="#101211"></stop>
+</lineargradient>
+<filter height="160%" id="softGlow" width="160%" x="-30%" y="-30%">
+<fegaussianblur stddeviation="13"></fegaussianblur>
+</filter>
+</defs>
+<rect fill="url(#roadBg)" height="760" rx="44" width="640" x="0" y="0"></rect>
+<circle cx="505" cy="120" fill="#e8ff38" opacity=".96" r="100"></circle>
+<circle cx="505" cy="120" fill="#e8ff38" filter="url(#softGlow)" opacity=".12" r="126"></circle>
+<path d="M130 760C100 610 210 540 288 460c80-82 79-150 42-236-28-66-5-146 65-224" fill="none" opacity=".95" stroke="#f7f5ef" stroke-width="154"></path>
+<path d="M130 760C100 610 210 540 288 460c80-82 79-150 42-236-28-66-5-146 65-224" fill="none" stroke="#171918" stroke-width="140"></path>
+<path class="road-dash" d="M130 760C100 610 210 540 288 460c80-82 79-150 42-236-28-66-5-146 65-224" fill="none" stroke="#e8ff38" stroke-dasharray="18 24" stroke-linecap="round" stroke-width="4"></path>
+<g transform="translate(180 570) rotate(-18)">
+<rect fill="#e8ff38" height="64" rx="25" width="154" x="0" y="0"></rect>
+<rect fill="#151716" height="26" rx="10" width="88" x="32" y="13"></rect>
+<circle cx="34" cy="61" fill="#050606" r="12"></circle>
+<circle cx="120" cy="61" fill="#050606" r="12"></circle>
+</g>
+<text fill="#f7f5ef" font-family="Arial, sans-serif" font-size="15" letter-spacing="4" opacity=".7" x="46" y="72">YELLOW-DRIVE</text>
+<text fill="#f7f5ef" font-family="Arial, sans-serif" font-size="30" font-weight="700" x="46" y="112">DEIN WEG.</text>
+<text fill="#e8ff38" font-family="Arial, sans-serif" font-size="30" font-weight="700" x="46" y="146">KLAR GEPLANT.</text>
+</svg>
+</div>
+<div class="floating-card floating-card-top reveal reveal-delay-2">
+<strong>B197</strong>
+<span>Automatikprüfung<br/>mit Schaltkompetenz</span>
+</div>
+<div class="floating-card floating-card-bottom reveal reveal-delay-3">
+<strong>Direkt erreichbar</strong>
+<a href="tel:+491718779310">0171 8779310</a>
+</div>
+</div>
+</div>
+<div aria-hidden="true" class="hero-scroll"><span></span>Scrollen</div>
+</section>
+<section aria-labelledby="quick-title" class="quick-path section-dark">
+<div class="shell">
+<div class="section-heading section-heading-light reveal">
+<div class="eyebrow">Schnell zum passenden Angebot</div>
+<h2 id="quick-title">Was möchtest du fahren?</h2>
+</div>
+<div class="quick-grid">
+<a class="quick-card reveal" data-filter-link="auto" href="#klassen">
+<span class="quick-number">01</span>
+<h3>Auto</h3>
+<p>B, BF17 und B197 – Schaltung oder Automatik.</p>
+<span class="quick-arrow">Klassen ansehen →</span>
+</a>
+<a class="quick-card reveal reveal-delay-1" data-filter-link="motorrad" href="#klassen">
+<span class="quick-number">02</span>
+<h3>Motorrad</h3>
+<p>Von Mofa und AM bis zur offenen Klasse A.</p>
+<span class="quick-arrow">Klassen ansehen →</span>
+</a>
+<a class="quick-card reveal reveal-delay-2" data-filter-link="anhaenger" href="#klassen">
+<span class="quick-number">03</span>
+<h3>Anhänger</h3>
+<p>B96 und BE verständlich eingeordnet.</p>
+<span class="quick-arrow">Klassen ansehen →</span>
+</a>
+</div>
+</div>
+</section>
+<section class="process section-light" id="ablauf">
+<div class="shell process-grid">
+<div class="process-intro">
+<div class="section-heading reveal">
+<div class="eyebrow">Von der ersten Frage bis zur Prüfung</div>
+<h2>Ein klarer Weg nimmt Druck aus der Ausbildung.</h2>
+<p>Du weißt von Anfang an, was als Nächstes passiert. Details klären wir persönlich – ohne unnötige Formulare und ohne Fachsprache.</p>
+</div>
+<a class="text-link reveal" href="#kontakt">Ersten Schritt machen <span>→</span></a>
+</div>
+<div class="process-track" data-road-progress="">
+<svg aria-hidden="true" class="process-line" preserveaspectratio="none" viewbox="0 0 70 620">
+<path d="M35 0 C10 90, 60 140, 35 220 C10 300, 60 350, 35 430 C10 500, 58 560, 35 620" fill="none" stroke="#d9d8d0" stroke-width="2"></path>
+<path class="process-line-active" d="M35 0 C10 90, 60 140, 35 220 C10 300, 60 350, 35 430 C10 500, 58 560, 35 620" fill="none" stroke="#151716" stroke-width="3"></path>
+</svg>
+<article class="process-step reveal">
+<span>01</span>
+<div><h3>Beratung</h3><p>Wunschklasse, Vorwissen, Zeitplan und offene Fragen gemeinsam klären.</p></div>
+</article>
+<article class="process-step reveal">
+<span>02</span>
+<div><h3>Antrag &amp; Unterlagen</h3><p>Wir erklären, welche Dokumente für deinen Fall benötigt werden.</p></div>
+</article>
+<article class="process-step reveal">
+<span>03</span>
+<div><h3>Theorie &amp; Praxis</h3><p>Systematisch lernen, üben und den Ausbildungsstand nachvollziehbar aufbauen.</p></div>
+</article>
+<article class="process-step reveal">
+<span>04</span>
+<div><h3>Prüfung &amp; selbstständig fahren</h3><p>Gut vorbereitet in die Prüfung – mit dem Ziel, danach sicher allein unterwegs zu sein.</p></div>
+</article>
+</div>
+</div>
+</section>
+<section class="classes-section section-offwhite" id="klassen">
+<div class="shell">
+<div class="section-heading split-heading reveal">
+<div>
+<div class="eyebrow">Führerscheinklassen</div>
+<h2>Finde die Klasse, die zu deinem Ziel passt.</h2>
+</div>
+<p>Die wichtigsten Informationen sind kurz zusammengefasst. Gesetzliche Angaben wurden für diese Version neu geordnet und mit amtlichen Quellen abgeglichen.</p>
+</div>
+<div aria-label="Führerscheinklassen filtern" class="class-filter reveal" role="group">
+<button class="filter-button is-active" data-filter="all" type="button">Alle</button>
+<button class="filter-button" data-filter="auto" type="button">Auto</button>
+<button class="filter-button" data-filter="motorrad" type="button">Motorrad &amp; Mofa</button>
+<button class="filter-button" data-filter="anhaenger" type="button">Anhänger</button>
+<button class="filter-button" data-filter="landwirtschaft" type="button">Landwirtschaft</button>
+</div>
+<div class="class-grid" data-class-grid=""></div>
+<p class="legal-note reveal">Stand der allgemeinen Rechtsangaben: 16.07.2026. Verbindlich sind die jeweils geltenden Vorschriften und die persönliche Beratung zum konkreten Einzelfall.</p>
+</div>
+</section>
+<section class="about section-dark" id="ueber-uns">
+<div class="shell about-grid">
+<div class="about-visual reveal">
+<div class="about-number">YD</div>
+<div class="about-line"></div>
+<p>Persönlich.<br/>Sicher.<br/>Direkt in Murnau.</p>
+</div>
+<div class="about-copy">
+<div class="eyebrow reveal">Fahrschule Yellow-Drive</div>
+<h2 class="reveal">Gelassen lernen.<br/>Sicher ankommen.</h2>
+<p class="about-lead reveal">Yellow-Drive wird von Stefan Bartl geführt. Statt anonymer Abläufe steht der direkte Kontakt im Mittelpunkt – vom ersten Gespräch bis zur Prüfung.</p>
+<div class="about-values">
+<article class="reveal"><span>01</span><h3>Verständlich</h3><p>Klare Erklärungen und ein nachvollziehbarer Ausbildungsaufbau.</p></article>
+<article class="reveal"><span>02</span><h3>Persönlich</h3><p>Direkte Telefonnummern und ein fester Ansprechpartner.</p></article>
+<article class="reveal"><span>03</span><h3>Flexibel</h3><p>Ausbildung für Auto, Motorrad, Anhänger und Klasse L.</p></article>
+<article class="reveal"><span>04</span><h3>Ruhig</h3><p>Das Ziel: sicher und mit Gelassenheit am Straßenverkehr teilnehmen.</p></article>
+</div>
+</div>
+</div>
+</section>
+<section class="choice-section section-light">
+<div class="shell choice-grid">
+<div class="choice-copy reveal">
+<div class="eyebrow">Schaltung oder Automatik?</div>
+<h2>Du musst dich nicht zwischen bequem lernen und flexibel fahren entscheiden.</h2>
+<p>Bei Yellow-Drive ist die Ausbildung auf Fahrzeugen mit Schalt- oder Automatikgetriebe möglich. B197 verbindet eine Automatikprüfung mit einer dokumentierten Schaltausbildung.</p>
+<a class="button button-dark" href="#kontakt">B197 persönlich klären</a>
+</div>
+<div class="choice-panels">
+<article class="choice-card reveal">
+<span>Schaltung</span>
+<h3>Klassisch lernen</h3>
+<p>Prüfung und Ausbildung auf einem Fahrzeug mit manuellem Getriebe.</p>
+</article>
+<article class="choice-card choice-card-accent reveal reveal-delay-1">
+<span>B197</span>
+<h3>Automatikprüfung</h3>
+<p>Mindestens zehn Schaltstunden plus Feststellungsfahrt – danach Klasse B ohne reine Automatikbeschränkung.</p>
+</article>
+</div>
+</div>
+</section>
+<section class="info-band">
+<div class="shell info-band-grid">
+<div class="reveal"><span>Standort</span><strong>Reschstraße 2<br/>82418 Murnau</strong></div>
+<div class="reveal reveal-delay-1"><span>Telefon</span><strong><a href="tel:+4988413840">08841 3840</a><br/><a href="tel:+491718779310">0171 8779310</a></strong></div>
+<div class="reveal reveal-delay-2"><span>Theorie &amp; Büro</span><strong>Aktuelle Zeiten<br/>bitte kurz erfragen</strong></div>
+<div class="reveal reveal-delay-3"><span>E-Mail</span><strong><a href="mailto:stefanbartl@gmx.net">stefanbartl@gmx.net</a></strong></div>
+</div>
+</section>
+<section class="faq section-offwhite" id="faq">
+<div class="shell faq-grid">
+<div class="section-heading reveal">
+<div class="eyebrow">Häufige Fragen</div>
+<h2>Das Wichtigste vor dem ersten Gespräch.</h2>
+<p>Die genaue Antwort hängt oft von deiner Wunschklasse, deinem Vorbesitz und deinem Zeitplan ab.</p>
+</div>
+<div class="faq-list">
+<details class="faq-item reveal">
+<summary>Welche Unterlagen brauche ich für den Führerschein?<span></span></summary>
+<p>Typischerweise werden Ausweisdokument, biometrisches Passfoto, Sehtest, Nachweis über die Schulung in Erster Hilfe und der Fahrerlaubnisantrag benötigt. Je nach Klasse oder persönlicher Situation können weitere Unterlagen hinzukommen.</p>
+</details>
+<details class="faq-item reveal">
+<summary>Wie viele Fahrstunden brauche ich?<span></span></summary>
+<p>Für die Grundausbildung gibt es bei vielen Klassen keine pauschale Mindestzahl. Sie richtet sich nach deinem Lernfortschritt. Gesetzlich festgelegte besondere Ausbildungsfahrten kommen je nach Klasse hinzu.</p>
+</details>
+<details class="faq-item reveal">
+<summary>Kann ich mit Automatik lernen und später Schaltung fahren?<span></span></summary>
+<p>Mit B197 ist das möglich, wenn mindestens zehn Fahrstunden zu je 45 Minuten auf einem Schaltwagen und eine mindestens 15-minütige Feststellungsfahrt absolviert wurden.</p>
+</details>
+<details class="faq-item reveal">
+<summary>Was ist der Unterschied zwischen B96 und BE?<span></span></summary>
+<p>B96 erweitert Klasse B für Fahrzeugkombinationen bis 4,25 t zulässige Gesamtmasse und wird über eine mindestens siebenstündige Schulung erworben. BE erlaubt einen Anhänger oder Sattelanhänger bis 3,5 t zulässige Gesamtmasse und erfordert eine praktische Prüfung.</p>
+</details>
+<details class="faq-item reveal">
+<summary>Wann kann ich beginnen?<span></span></summary>
+<p>Das hängt von der Klasse, deinem Alter, den verfügbaren Kapazitäten und dem Bearbeitungsstand des Fahrerlaubnisantrags ab. Am schnellsten lässt sich das telefonisch klären.</p>
+</details>
+</div>
+</div>
+</section>
+<section class="contact section-dark" id="kontakt">
+<div class="shell contact-grid">
+<div class="contact-copy">
+<div class="eyebrow reveal">Unkompliziert anfangen</div>
+<h2 class="reveal">Eine kurze Frage reicht für den ersten Schritt.</h2>
+<p class="reveal">Nenne deine Wunschklasse und wie wir dich am besten erreichen. Yellow-Drive meldet sich persönlich zurück.</p>
+<div class="contact-direct reveal">
+<a href="tel:+4988413840"><span>Festnetz</span><strong>08841 3840</strong></a>
+<a href="tel:+491718779310"><span>Mobil</span><strong>0171 8779310</strong></a>
+<a href="mailto:stefanbartl@gmx.net"><span>E-Mail</span><strong>stefanbartl@gmx.net</strong></a>
+</div>
+<a class="route-link reveal" href="https://www.google.com/maps/search/?api=1&amp;query=Fahrschule+Yellow-Drive+Reschstra%C3%9Fe+2+82418+Murnau" rel="noopener" target="_blank">Route zur Fahrschule öffnen →</a>
+</div>
+<form action="mailto:stefanbartl@gmx.net" class="contact-form reveal reveal-delay-1" data-contact-form="" method="post">
+<div class="form-row">
+<label>Vorname und Nachname
+              <input autocomplete="name" maxlength="100" name="name" required="" type="text"/>
+</label>
+<label>Wunschklasse
+              <select name="license" required="">
+<option value="">Bitte auswählen</option>
+<option>B / BF17</option><option>B197</option><option>B96</option><option>BE</option>
+<option>A</option><option>A2</option><option>A1</option><option>AM</option><option>Mofa</option><option>L</option>
+<option>Ich bin noch unsicher</option>
+</select>
+</label>
+</div>
+<div class="form-row">
+<label>Telefonnummer
+              <input autocomplete="tel" maxlength="40" name="phone" required="" type="tel"/>
+</label>
+<label>E-Mail-Adresse
+              <input autocomplete="email" maxlength="120" name="email" type="email"/>
+</label>
+</div>
+<label>Wann bist du gut erreichbar?
+            <input maxlength="120" name="time" placeholder="z. B. werktags ab 16 Uhr" type="text"/>
+</label>
+<label>Nachricht
+            <textarea maxlength="2000" name="message" placeholder="Worum geht es?" rows="5"></textarea>
+</label>
+<label aria-hidden="true" class="honeypot">Website<input autocomplete="off" name="website" tabindex="-1" type="text"/></label>
+<label class="consent">
+<input name="privacy" required="" type="checkbox"/>
+<span>Ich habe die <a data-legal-open="legal-datenschutz" href="#legal-datenschutz">Datenschutzerklärung</a> gelesen und stimme der Verarbeitung meiner Angaben zur Bearbeitung der Anfrage zu.</span>
+</label>
+<button class="button button-primary button-full" type="submit">Rückmeldung anfragen</button>
+<p class="form-status" data-form-status="" role="status"></p>
+</form>
+</div>
+</section>
+</main>
+<footer class="site-footer">
+<div class="shell footer-top">
+<a class="brand footer-brand" href="#top"><img alt="Yellow-Drive" height="48" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0NzAgMTIwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+CiAgPHRpdGxlIGlkPSJ0aXRsZSI+WWVsbG93LURyaXZlPC90aXRsZT48ZGVzYyBpZD0iZGVzYyI+TG9nbyBkZXIgRmFocnNjaHVsZSBZZWxsb3ctRHJpdmU8L2Rlc2M+CiAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoNCAxMCkiPgogICAgPHBhdGggZD0iTTUwIDBjMjggMCA1MCAyMiA1MCA1MHMtMjIgNTAtNTAgNTBTMCA3OCAwIDUwIDIyIDAgNTAgMFoiIGZpbGw9IiNlOGZmMzgiLz4KICAgIDxwYXRoIGQ9Ik0yNSA5MWMyLTI0IDE4LTM0IDMxLTQ2IDEzLTEzIDEyLTIzIDYtMzYiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzE1MTcxNiIgc3Ryb2tlLXdpZHRoPSIxNSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CiAgICA8cGF0aCBkPSJNMjYgOTFjMi0yNCAxOC0zNCAzMS00NiAxMy0xMyAxMi0yMyA2LTM2IiBmaWxsPSJub25lIiBzdHJva2U9IiNmN2Y1ZWYiIHN0cm9rZS13aWR0aD0iMi41IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1kYXNoYXJyYXk9IjYgOCIvPgogIDwvZz4KICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgxMjQgMjcpIiBmaWxsPSIjZjdmNWVmIj4KICAgIDx0ZXh0IHg9IjAiIHk9IjM4IiBmb250LWZhbWlseT0iQXJpYWwsIEhlbHZldGljYSwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSI0MiIgZm9udC13ZWlnaHQ9IjgwMCIgbGV0dGVyLXNwYWNpbmc9Ii0yIj5ZRUxMT1c8L3RleHQ+CiAgICA8dGV4dCB4PSIwIiB5PSI3OSIgZm9udC1mYW1pbHk9IkFyaWFsLCBIZWx2ZXRpY2EsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iNDIiIGZvbnQtd2VpZ2h0PSI4MDAiIGxldHRlci1zcGFjaW5nPSItMiI+RFJJVkU8L3RleHQ+CiAgICA8cmVjdCB4PSIxNDYiIHk9IjUyIiB3aWR0aD0iMTA0IiBoZWlnaHQ9IjEwIiByeD0iNSIgZmlsbD0iI2U4ZmYzOCIvPgogIDwvZz4KPC9zdmc+Cg==" width="188"/></a>
+<div><span>Fahrschule Yellow-Drive</span><p>Inhaber Stefan Bartl<br/>Reschstraße 2 · 82418 Murnau</p></div>
+<div><span>Kontakt</span><p><a href="tel:+4988413840">08841 3840</a><br/><a href="tel:+491718779310">0171 8779310</a><br/><a href="mailto:stefanbartl@gmx.net">stefanbartl@gmx.net</a></p></div>
+<div><span>Navigation</span><p><a href="#klassen">Führerscheine</a><br/><a href="#ablauf">Ablauf</a><br/><a href="#kontakt">Beratung</a></p></div>
+</div>
+<div class="shell footer-bottom">
+<span>© <span data-year=""></span> Fahrschule Yellow-Drive</span>
+<nav aria-label="Rechtliches"><a data-legal-open="legal-impressum" href="#legal-impressum">Impressum</a><a data-legal-open="legal-datenschutz" href="#legal-datenschutz">Datenschutz</a><a data-legal-open="legal-quellen" href="#legal-quellen">Quellen &amp; Stand</a></nav>
+</div>
+</footer>
+<div aria-label="Schnellkontakt" class="mobile-action-bar">
+<a href="tel:+4988413840">Anrufen</a>
+<a href="#kontakt">Anfrage</a>
+<a href="https://www.google.com/maps/search/?api=1&amp;query=Fahrschule+Yellow-Drive+Reschstra%C3%9Fe+2+82418+Murnau" rel="noopener" target="_blank">Route</a>
+</div>
+
+
+
+<dialog aria-label="Impressum" class="legal-dialog" id="legal-impressum">
+<div class="legal-dialog-inner">
+<div class="legal-dialog-top"><strong>Impressum</strong><button aria-label="Dialog schließen" class="legal-dialog-close" data-legal-close="" type="button">×</button></div>
+<main class="legal-page"><div class="shell prose-shell">
+<div class="eyebrow">Rechtliches</div>
+<h1>Impressum</h1>
+<h2>Anbieter</h2>
+<p>Fahrschule Yellow-Drive<br/>Inhaber: Stefan Bartl<br/>Reschstraße 2<br/>82418 Murnau am Staffelsee<br/>Deutschland</p>
+<h2>Kontakt</h2>
+<p>Telefon: <a href="tel:+4988413840">08841 3840</a><br/>Mobil: <a href="tel:+491718779310">0171 8779310</a><br/>E-Mail: <a href="mailto:stefanbartl@gmx.net">stefanbartl@gmx.net</a></p>
+<h2>Berufsrechtliche Angaben</h2>
+<p>Für Fahrschulen gelten insbesondere das Fahrlehrergesetz (FahrlG), die Durchführungsverordnung zum Fahrlehrergesetz (DV-FahrlG), die Fahrschüler-Ausbildungsordnung (FahrschAusbO) und die Fahrerlaubnis-Verordnung (FeV). Die jeweils geltenden Fassungen sind über das Bundesministerium der Justiz abrufbar.</p>
+<div class="notice-box"><strong>Vor der Veröffentlichung verbindlich ergänzen</strong><p>Die vollständige bestehende Anbieterkennzeichnung einschließlich zuständiger Erlaubnis- bzw. Aufsichtsbehörde, gegebenenfalls Register- oder Steuerangaben sowie die konkrete inhaltlich verantwortliche Person muss vom Betreiber oder einer Rechtsberatung geprüft und ergänzt werden. Diese Daten waren auf der öffentlich auslesbaren Bestandsseite nicht vollständig verfügbar und wurden deshalb nicht erfunden.</p></div>
+<h2>Haftung für Links</h2>
+<p>Diese Website enthält Links zu externen Angeboten. Für deren Inhalte sind ausschließlich die jeweiligen Anbieter verantwortlich.</p>
+</div></main>
+</div>
+</dialog>
+<dialog aria-label="Datenschutz" class="legal-dialog" id="legal-datenschutz">
+<div class="legal-dialog-inner">
+<div class="legal-dialog-top"><strong>Datenschutz</strong><button aria-label="Dialog schließen" class="legal-dialog-close" data-legal-close="" type="button">×</button></div>
+<main class="legal-page"><div class="shell prose-shell">
+<div class="eyebrow">Rechtliches</div>
+<h1>Datenschutz</h1>
+<h2>1. Verantwortlicher</h2>
+<p>Fahrschule Yellow-Drive, Inhaber Stefan Bartl, Reschstraße 2, 82418 Murnau am Staffelsee<br/>Telefon: <a href="tel:+4988413840">08841 3840</a><br/>E-Mail: <a href="mailto:stefanbartl@gmx.net">stefanbartl@gmx.net</a></p>
+<h2>2. Aufruf der Website</h2>
+<p>Beim Aufruf einer Website verarbeitet der Hosting-Anbieter technisch erforderliche Verbindungsdaten, beispielsweise IP-Adresse, Zeitpunkt, angeforderte Datei, übertragene Datenmenge, Browser und Betriebssystem. Die Verarbeitung dient dem sicheren und stabilen Betrieb der Website auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO.</p>
+<div class="notice-box"><strong>Hosting-Angaben vor Livegang ergänzen</strong><p>Name, Anschrift, Speicherfristen und gegebenenfalls Auftragsverarbeitungsangaben des tatsächlich eingesetzten Hosting-Anbieters müssen vor der Veröffentlichung eingetragen werden.</p></div>
+<h2>3. Kontaktformular</h2>
+<p>Bei Nutzung des Kontaktformulars werden Name, Wunschklasse, Telefonnummer, freiwillig die E-Mail-Adresse und Erreichbarkeit sowie die Nachricht verarbeitet. Zweck ist die Bearbeitung der Anfrage und die Kontaktaufnahme. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO bei vorvertraglichen Anfragen beziehungsweise Art. 6 Abs. 1 lit. a DSGVO auf Grundlage der erteilten Einwilligung. Die Daten werden gelöscht, sobald die Anfrage abschließend bearbeitet ist und keine gesetzlichen Aufbewahrungspflichten entgegenstehen.</p>
+<h2>4. Kontakt per Telefon oder E-Mail</h2>
+<p>Bei einer Kontaktaufnahme per Telefon oder E-Mail werden die übermittelten Angaben zur Bearbeitung der Anfrage verarbeitet. Es gelten dieselben Rechtsgrundlagen und Löschgrundsätze wie beim Kontaktformular.</p>
+<h2>5. Cookies, Analyse und externe Einbettungen</h2>
+<p>Diese Website setzt in der ausgelieferten Version keine Analyse-, Marketing- oder Tracking-Dienste ein und lädt keine externen Schriftarten. Es wird kein eingebetteter Kartendienst geladen. Der Link „Route zur Fahrschule öffnen“ führt erst nach aktivem Anklicken zu Google Maps; ab diesem Zeitpunkt gelten die Datenschutzbestimmungen des externen Anbieters.</p>
+<h2>6. Empfänger</h2>
+<p>Empfänger können der Hosting-Anbieter und die für den E-Mail-Empfang eingesetzten technischen Dienstleister sein. Eine Weitergabe zu Werbezwecken ist nicht vorgesehen.</p>
+<h2>7. Rechte betroffener Personen</h2>
+<p>Betroffene Personen haben nach Maßgabe der gesetzlichen Voraussetzungen Rechte auf Auskunft, Berichtigung, Löschung, Einschränkung der Verarbeitung, Datenübertragbarkeit und Widerspruch. Eine Einwilligung kann mit Wirkung für die Zukunft widerrufen werden. Außerdem besteht ein Beschwerderecht bei einer Datenschutzaufsichtsbehörde.</p>
+<h2>8. Sicherheit und Aktualität</h2>
+<p>Die Website sollte ausschließlich über eine verschlüsselte HTTPS-Verbindung betrieben werden. Diese Erklärung ist auf die vorliegende technische Umsetzung ohne Analyse- und Marketingdienste zugeschnitten. Werden später zusätzliche Dienste eingebunden, muss sie vor deren Aktivierung angepasst werden.</p>
+<p>Stand: 16. Juli 2026</p>
+</div></main>
+</div>
+</dialog>
+<dialog aria-label="Quellen &amp; Stand" class="legal-dialog" id="legal-quellen">
+<div class="legal-dialog-inner">
+<div class="legal-dialog-top"><strong>Quellen &amp; Stand</strong><button aria-label="Dialog schließen" class="legal-dialog-close" data-legal-close="" type="button">×</button></div>
+<main class="legal-page"><div class="shell prose-shell">
+<div class="eyebrow">Transparenz</div>
+<h1>Quellen &amp; Stand</h1>
+<p>Kontaktdaten, Name des Inhabers, Anschrift und das grundsätzliche Klassenangebot wurden aus der öffentlich erreichbaren Bestandswebsite von Yellow-Drive übernommen. Die rechtlichen Kurzangaben zu Führerscheinklassen wurden neu formuliert und anhand amtlicher Vorschriften abgeglichen.</p>
+<h2>Bestandsquelle</h2>
+<ul><li><a href="https://www.yellow-drive.de/" rel="noopener" target="_blank">Öffentliche Website der Fahrschule Yellow-Drive</a>, geprüft am 16.07.2026</li></ul>
+<h2>Amtliche Grundlagen</h2>
+<ul>
+<li><a href="https://www.gesetze-im-internet.de/fev_2010/__5.html" rel="noopener" target="_blank">Fahrerlaubnis-Verordnung (FeV), § 5</a></li>
+<li><a href="https://www.gesetze-im-internet.de/fev_2010/__6.html" rel="noopener" target="_blank">FeV, § 6 – Einteilung der Fahrerlaubnisklassen</a></li>
+<li><a href="https://www.gesetze-im-internet.de/fev_2010/__6a.html" rel="noopener" target="_blank">FeV, § 6a – B96</a></li>
+<li><a href="https://www.gesetze-im-internet.de/fev_2010/__10.html" rel="noopener" target="_blank">FeV, § 10 – Mindestalter</a></li>
+<li><a href="https://www.gesetze-im-internet.de/fev_2010/__15.html" rel="noopener" target="_blank">FeV, § 15 – Fahrerlaubnisprüfung</a></li>
+<li><a href="https://www.gesetze-im-internet.de/fev_2010/__17a.html" rel="noopener" target="_blank">FeV, § 17a – B197</a></li>
+<li><a href="https://www.gesetze-im-internet.de/fev_2010/anlage_7a.html" rel="noopener" target="_blank">FeV, Anlage 7a – Fahrerschulung B96</a></li>
+<li><a href="https://www.gesetze-im-internet.de/fahrschausbo_2012/" rel="noopener" target="_blank">Fahrschüler-Ausbildungsordnung (FahrschAusbO)</a></li>
+<li><a href="https://www.gesetze-im-internet.de/fahrschausbo_2012/__5a.html" rel="noopener" target="_blank">FahrschAusbO, § 5a – Schaltkompetenz B197</a></li>
+<li><a href="https://www.gesetze-im-internet.de/fahrschausbo_2012/anlage_4.html" rel="noopener" target="_blank">FahrschAusbO, Anlage 4 – besondere Ausbildungsfahrten</a></li>
+</ul>
+<h2>Bewusst nicht veröffentlicht</h2>
+<p>Öffnungs- und Theoriezeiten wurden nicht aus Drittportalen übernommen, da öffentlich auffindbare Angaben voneinander abweichen können. Preise, Fahrzeugmodelle, freie Plätze, Erfolgsquoten, Bewertungen und zusätzliche Spezialisierungen werden erst veröffentlicht, nachdem die Fahrschule sie bestätigt hat.</p>
+<p>Allgemeiner Informationsstand: 16.07.2026. Für den Einzelfall sind die geltenden Vorschriften und die persönliche Beratung maßgeblich.</p>
+</div></main>
+</div>
+</dialog><script>window.YELLOW_DRIVE_CONFIG = {
+  business: {
+    name: "Fahrschule Yellow-Drive",
+    owner: "Stefan Bartl",
+    street: "Reschstraße 2",
+    postalCode: "82418",
+    city: "Murnau am Staffelsee",
+    phoneDisplay: "08841 3840",
+    phoneHref: "+4988413840",
+    mobileDisplay: "0171 8779310",
+    mobileHref: "+491718779310",
+    email: "stefanbartl@gmx.net",
+    website: "https://www.yellow-drive.de/"
+  },
+  availability: {
+    office: "Bitte kurz telefonisch erfragen",
+    theory: "Aktuelle Theoriezeiten bitte kurz telefonisch erfragen",
+    response: "Persönliche Rückmeldung über Telefon oder E-Mail"
+  },
+  features: {
+    whatsappEnabled: false,
+    reviewsEnabled: false,
+    handicapTrainingEnabled: false
+  }
+};
+
+window.YELLOW_DRIVE_CLASSES = [
+  {
+    id: "b-bf17",
+    group: "auto",
+    badge: "Auto",
+    title: "B / BF17",
+    subtitle: "Der klassische Autoführerschein – ab 17 begleitet oder regulär ab 18.",
+    age: "17 mit BF17 · sonst 18",
+    vehicle: "Pkw bis 3,5 t; Anhänger im Rahmen der Klasse B",
+    included: "Schließt AM und L ein",
+    theory: "Beim Ersterwerb: 12 Doppelstunden Grundstoff + 2 Doppelstunden Zusatzstoff B",
+    practice: "Grundausbildung nach Lernfortschritt; zusätzlich 5 Überland-, 4 Autobahn- und 3 Nachtfahrten zu je 45 Minuten",
+    documents: ["Ausweisdokument", "Biometrisches Passfoto", "Sehtest", "Nachweis über die Schulung in Erster Hilfe", "Fahrerlaubnisantrag"],
+    note: "Die konkrete Zahl der Übungsstunden richtet sich nach dem individuellen Ausbildungsstand.",
+    sourceKeys: ["fev6", "fev10", "fahrsch4", "fahrschAnlage4", "fev19"]
+  },
+  {
+    id: "b197",
+    group: "auto",
+    badge: "Auto",
+    title: "B197",
+    subtitle: "Automatikprüfung mit integrierter Schaltausbildung.",
+    age: "17 mit BF17 · sonst 18",
+    vehicle: "Klasse B; Ausbildung überwiegend auf Automatik möglich",
+    included: "Schaltwagen der Klasse B dürfen nach vollständigem Nachweis ebenfalls gefahren werden",
+    theory: "Wie Klasse B",
+    practice: "Mindestens 10 Fahrstunden zu je 45 Minuten auf Schaltwagen sowie eine mindestens 15-minütige Feststellungsfahrt; praktische Prüfung auf Automatik möglich",
+    documents: ["Unterlagen wie bei Klasse B"],
+    note: "Die Schlüsselzahl 197 dokumentiert die Schaltkompetenz. Auswirkungen auf spätere Fahrerlaubnisklassen sollten im Beratungsgespräch geklärt werden.",
+    sourceKeys: ["fev17a", "fahrsch5a"]
+  },
+  {
+    id: "b96",
+    group: "anhaenger",
+    badge: "Anhänger",
+    title: "B96",
+    subtitle: "Die kompakte Erweiterung für schwerere Fahrzeugkombinationen.",
+    age: "17 mit BF17 · sonst 18",
+    vehicle: "Klasse-B-Zugfahrzeug mit Anhänger; Kombination über 3,5 t bis höchstens 4,25 t zulässige Gesamtmasse",
+    included: "Schlüsselzahl 96 zur Klasse B",
+    theory: "Bestandteil einer mindestens siebenstündigen Fahrerschulung",
+    practice: "Fahrpraktische Übungen innerhalb der Schulung; keine separate Fahrerlaubnisprüfung",
+    documents: ["Vorhandene oder gleichzeitig erworbene Klasse B", "Teilnahmebescheinigung der Fahrschule"],
+    note: "B96 ist eine Schulung, keine eigenständige Führerscheinklasse.",
+    sourceKeys: ["fev6a", "fevAnlage7a"]
+  },
+  {
+    id: "be",
+    group: "anhaenger",
+    badge: "Anhänger",
+    title: "BE",
+    subtitle: "Für größere Anhänger, Wohnwagen oder Pferdeanhänger.",
+    age: "17 mit BF17 · sonst 18",
+    vehicle: "Zugfahrzeug der Klasse B plus Anhänger oder Sattelanhänger bis 3,5 t zulässige Gesamtmasse",
+    included: "Setzt Klasse B voraus",
+    theory: "Keine separate Theorieprüfung bei Erweiterung von B auf BE",
+    practice: "Grundausbildung nach Lernfortschritt; mindestens 3 Überland-, 1 Autobahn- und 1 Nachtfahrt zu je 45 Minuten; praktische Prüfung",
+    documents: ["Klasse B oder paralleler Erwerb", "Fahrerlaubnisantrag"],
+    note: "Welche Erweiterung passt, hängt von den zulässigen Gesamtmassen der konkreten Kombination ab.",
+    sourceKeys: ["fev6", "fev15", "fahrschAnlage4"]
+  },
+  {
+    id: "a",
+    group: "motorrad",
+    badge: "Motorrad",
+    title: "A",
+    subtitle: "Der offene Motorradführerschein ohne Leistungsbegrenzung.",
+    age: "Direkteinstieg ab 24 · Aufstieg ab 20 bei 2 Jahren A2 · Trikes über 15 kW ab 21",
+    vehicle: "Krafträder ohne Leistungsbegrenzung sowie bestimmte dreirädrige Kraftfahrzeuge",
+    included: "Schließt A2, A1 und AM ein",
+    theory: "Beim Ersterwerb: 12 Doppelstunden Grundstoff + 4 Doppelstunden Motorrad-Zusatzstoff",
+    practice: "Beim Ersterwerb Grundausbildung plus 5 Überland-, 4 Autobahn- und 3 Nachtfahrten zu je 45 Minuten; beim Stufenaufstieg gelten abweichende Regeln",
+    documents: ["Ausweisdokument", "Biometrisches Passfoto", "Sehtest", "Erste-Hilfe-Nachweis", "Fahrerlaubnisantrag"],
+    note: "Schutzkleidung und konkrete Ausbildungsvoraussetzungen werden vor Beginn persönlich abgestimmt.",
+    sourceKeys: ["fev6", "fev10", "fev15", "fahrsch4", "fahrschAnlage4"]
+  },
+  {
+    id: "a2",
+    group: "motorrad",
+    badge: "Motorrad",
+    title: "A2",
+    subtitle: "Motorräder bis 35 kW – direkter Einstieg ab 18.",
+    age: "18",
+    vehicle: "Krafträder bis 35 kW, höchstens 0,2 kW/kg und nicht von Maschinen über 70 kW abgeleitet",
+    included: "Schließt A1 und AM ein",
+    theory: "Beim Ersterwerb: 12 Doppelstunden Grundstoff + 4 Doppelstunden Motorrad-Zusatzstoff",
+    practice: "Beim Ersterwerb Grundausbildung plus 5 Überland-, 4 Autobahn- und 3 Nachtfahrten zu je 45 Minuten; Aufstieg von A1 nach zweijährigem Vorbesitz mit praktischer Prüfung",
+    documents: ["Ausweisdokument", "Biometrisches Passfoto", "Sehtest", "Erste-Hilfe-Nachweis", "Fahrerlaubnisantrag"],
+    note: "Der Stufenführerschein ermöglicht später den Aufstieg zur offenen Klasse A.",
+    sourceKeys: ["fev6", "fev10", "fev15", "fahrschAnlage4"]
+  },
+  {
+    id: "a1",
+    group: "motorrad",
+    badge: "Motorrad",
+    title: "A1",
+    subtitle: "Leichtkrafträder bis 125 cm³ ab 16.",
+    age: "16",
+    vehicle: "Krafträder bis 125 cm³, höchstens 11 kW und höchstens 0,1 kW/kg; bestimmte dreirädrige Fahrzeuge bis 15 kW",
+    included: "Schließt AM ein",
+    theory: "Beim Ersterwerb: 12 Doppelstunden Grundstoff + 4 Doppelstunden Motorrad-Zusatzstoff",
+    practice: "Grundausbildung plus 5 Überland-, 4 Autobahn- und 3 Nachtfahrten zu je 45 Minuten",
+    documents: ["Ausweisdokument", "Biometrisches Passfoto", "Sehtest", "Erste-Hilfe-Nachweis", "Fahrerlaubnisantrag"],
+    note: "Nach zwei Jahren Vorbesitz ist der Aufstieg zu A2 über eine praktische Prüfung möglich.",
+    sourceKeys: ["fev6", "fev10", "fev15", "fahrschAnlage4"]
+  },
+  {
+    id: "am",
+    group: "motorrad",
+    badge: "Roller & Moped",
+    title: "AM",
+    subtitle: "Kleinkrafträder und leichte vierrädrige Fahrzeuge ab 15.",
+    age: "15 · bis 16 grundsätzlich nur im Inland",
+    vehicle: "Fahrzeuge der europäischen Klassen L1e-B, L2e und L6e, darunter viele Mopeds, Roller und leichte vierrädrige Fahrzeuge",
+    included: "Schließt keine weitere Fahrerlaubnisklasse ein",
+    theory: "Beim Ersterwerb: 12 Doppelstunden Grundstoff + 2 Doppelstunden Zusatzstoff AM",
+    practice: "Grundausbildung nach Lernfortschritt; keine gesetzlich festgelegten besonderen Ausbildungsfahrten wie bei A1/A2/A",
+    documents: ["Ausweisdokument", "Biometrisches Passfoto", "Sehtest", "Erste-Hilfe-Nachweis", "Fahrerlaubnisantrag"],
+    note: "Die genaue Fahrzeugzuordnung hängt von der Fahrzeugart und den Zulassungsdaten ab.",
+    sourceKeys: ["fev6", "fev10", "fahrsch4"]
+  },
+  {
+    id: "mofa",
+    group: "motorrad",
+    badge: "Mofa",
+    title: "Mofa-Prüfbescheinigung",
+    subtitle: "Der Einstieg für Fahrzeuge bis 25 km/h.",
+    age: "15",
+    vehicle: "Mofas und bestimmte zwei- oder dreirädrige Kraftfahrzeuge bis 25 km/h",
+    included: "Prüfbescheinigung, keine Fahrerlaubnisklasse",
+    theory: "Mindestens 6 Doppelstunden zu je 90 Minuten",
+    practice: "Mindestens 1 Doppelstunde Einzelunterricht oder 2 Doppelstunden Gruppenunterricht; anschließend theoretische Prüfung",
+    documents: ["Biometrisches Passfoto", "Ausbildungsbescheinigung"],
+    note: "Wer bereits eine Fahrerlaubnis besitzt, benötigt in der Regel keine Mofa-Prüfbescheinigung.",
+    sourceKeys: ["fev5", "fevAnlage1Mofa", "fevAnlage2Mofa"]
+  },
+  {
+    id: "l",
+    group: "landwirtschaft",
+    badge: "Landwirtschaft",
+    title: "L",
+    subtitle: "Für bestimmte land- oder forstwirtschaftliche Zugmaschinen.",
+    age: "16",
+    vehicle: "Land- oder forstwirtschaftlich eingesetzte Zugmaschinen bis 40 km/h; mit Anhänger höchstens 25 km/h sowie bestimmte Arbeitsmaschinen bis 25 km/h",
+    included: "Keine weitere Klasse",
+    theory: "Beim Ersterwerb: 12 Doppelstunden Grundstoff + 2 Doppelstunden Zusatzstoff L",
+    practice: "Keine praktische Fahrerlaubnisprüfung und keine gesetzlich vorgeschriebene praktische Mindestausbildung",
+    documents: ["Ausweisdokument", "Biometrisches Passfoto", "Sehtest", "Erste-Hilfe-Nachweis", "Fahrerlaubnisantrag"],
+    note: "Die Klasse ist an die land- oder forstwirtschaftliche Zweckbestimmung und Nutzung gebunden.",
+    sourceKeys: ["fev6", "fev10", "fev15", "fahrsch4"]
+  }
+];
+
+window.YELLOW_DRIVE_SOURCES = {
+  fev5: { label: "FeV § 5", url: "https://www.gesetze-im-internet.de/fev_2010/__5.html" },
+  fev6: { label: "FeV § 6", url: "https://www.gesetze-im-internet.de/fev_2010/__6.html" },
+  fev6a: { label: "FeV § 6a", url: "https://www.gesetze-im-internet.de/fev_2010/__6a.html" },
+  fev10: { label: "FeV § 10", url: "https://www.gesetze-im-internet.de/fev_2010/__10.html" },
+  fev15: { label: "FeV § 15", url: "https://www.gesetze-im-internet.de/fev_2010/__15.html" },
+  fev17a: { label: "FeV § 17a", url: "https://www.gesetze-im-internet.de/fev_2010/__17a.html" },
+  fev19: { label: "FeV § 19", url: "https://www.gesetze-im-internet.de/fev_2010/__19.html" },
+  fevAnlage7a: { label: "FeV Anlage 7a", url: "https://www.gesetze-im-internet.de/fev_2010/anlage_7a.html" },
+  fevAnlage1Mofa: { label: "FeV Anlage 1 (Mofa)", url: "https://www.gesetze-im-internet.de/fev_2010/anlage_1.html" },
+  fevAnlage2Mofa: { label: "FeV Anlage 2 (Mofa)", url: "https://www.gesetze-im-internet.de/fev_2010/anlage_2.html" },
+  fahrsch4: { label: "FahrschAusbO § 4 / Anlagen 1, 2.1, 2.2, 2.6, 2.8", url: "https://www.gesetze-im-internet.de/fahrschausbo_2012/" },
+  fahrsch5a: { label: "FahrschAusbO § 5a", url: "https://www.gesetze-im-internet.de/fahrschausbo_2012/__5a.html" },
+  fahrschAnlage4: { label: "FahrschAusbO Anlage 4", url: "https://www.gesetze-im-internet.de/fahrschausbo_2012/anlage_4.html" }
+};
+
+(() => {
+  "use strict";
+
+  const qs = (selector, root = document) => root.querySelector(selector);
+  const qsa = (selector, root = document) => [...root.querySelectorAll(selector)];
+
+  const header = qs("[data-header]");
+  const menuToggle = qs("[data-menu-toggle]");
+  const mobileMenu = qs("[data-mobile-menu]");
+
+  function setHeaderState() {
+    header?.classList.toggle("is-scrolled", window.scrollY > 18);
+  }
+
+  setHeaderState();
+  window.addEventListener("scroll", setHeaderState, { passive: true });
+
+  menuToggle?.addEventListener("click", () => {
+    const open = menuToggle.getAttribute("aria-expanded") === "true";
+    menuToggle.setAttribute("aria-expanded", String(!open));
+    mobileMenu.hidden = open;
+    document.body.classList.toggle("menu-open", !open);
+  });
+
+  qsa("a", mobileMenu).forEach((link) => {
+    link.addEventListener("click", () => {
+      menuToggle?.setAttribute("aria-expanded", "false");
+      mobileMenu.hidden = true;
+      document.body.classList.remove("menu-open");
+    });
+  });
+
+  const revealObserver = new IntersectionObserver(
+    (entries, observer) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { rootMargin: "0px 0px -8%", threshold: 0.08 }
+  );
+
+  function observeReveals(root = document) {
+    qsa(".reveal", root).forEach((el) => revealObserver.observe(el));
+  }
+
+  observeReveals();
+
+  const parallaxItems = qsa("[data-parallax]");
+  let ticking = false;
+
+  function updateParallax() {
+    parallaxItems.forEach((item) => {
+      const rect = item.getBoundingClientRect();
+      const factor = Number(item.dataset.parallax || 0.05);
+      const centerOffset = rect.top + rect.height / 2 - window.innerHeight / 2;
+      item.style.transform = `translate3d(0, ${centerOffset * factor}px, 0) rotate(3deg)`;
+    });
+    ticking = false;
+  }
+
+  if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    window.addEventListener(
+      "scroll",
+      () => {
+        if (!ticking) {
+          requestAnimationFrame(updateParallax);
+          ticking = true;
+        }
+      },
+      { passive: true }
+    );
+    updateParallax();
+  }
+
+  const processTrack = qs("[data-road-progress]");
+  const processPath = qs(".process-line-active");
+  if (processTrack && processPath) {
+    const pathLength = processPath.getTotalLength();
+    processPath.style.strokeDasharray = String(pathLength);
+    processPath.style.strokeDashoffset = String(pathLength);
+
+    const updateRoad = () => {
+      const rect = processTrack.getBoundingClientRect();
+      const start = window.innerHeight * 0.72;
+      const end = window.innerHeight * 0.22;
+      const progress = Math.min(1, Math.max(0, (start - rect.top) / (rect.height - end + start)));
+      processPath.style.strokeDashoffset = String(pathLength * (1 - progress));
+    };
+    window.addEventListener("scroll", updateRoad, { passive: true });
+    updateRoad();
+  }
+
+  const grid = qs("[data-class-grid]");
+  const classes = window.YELLOW_DRIVE_CLASSES || [];
+  const sources = window.YELLOW_DRIVE_SOURCES || {};
+
+  function createClassCard(item) {
+    const details = document.createElement("details");
+    details.className = "class-card reveal";
+    details.dataset.group = item.group;
+    details.id = `klasse-${item.id}`;
+
+    const sourceLinks = item.sourceKeys
+      .map((key) => sources[key])
+      .filter(Boolean)
+      .map((source) => `<a href="${source.url}" target="_blank" rel="noopener">${source.label}</a>`)
+      .join("");
+
+    const documents = item.documents.map((document) => `<li>${document}</li>`).join("");
+
+    details.innerHTML = `
+      <summary>
+        <div class="class-card-head">
+          <div class="class-code">${item.title}</div>
+          <div class="class-card-title">
+            <span>${item.badge}</span>
+            <h3>${item.title}</h3>
+            <p>${item.subtitle}</p>
+          </div>
+          <div class="class-toggle" aria-hidden="true"></div>
+        </div>
+        <div class="class-meta">
+          <span>Mindestalter: ${item.age}</span>
+          <span>${item.group === "auto" ? "Pkw" : item.badge}</span>
+        </div>
+      </summary>
+      <div class="class-details">
+        <div class="class-detail-grid">
+          <div><h4>Was darf ich fahren?</h4><p>${item.vehicle}</p></div>
+          <div><h4>Eingeschlossene Berechtigung</h4><p>${item.included}</p></div>
+          <div><h4>Theorie</h4><p>${item.theory}</p></div>
+          <div><h4>Praxis</h4><p>${item.practice}</p></div>
+          <div><h4>Typische Unterlagen</h4><ul>${documents}</ul></div>
+          <div><h4>Mindestalter</h4><p>${item.age}</p></div>
+        </div>
+        <p class="class-note">${item.note}</p>
+        <div class="class-sources" aria-label="Amtliche Quellen">${sourceLinks}</div>
+      </div>`;
+
+    return details;
+  }
+
+  if (grid) {
+    const fragment = document.createDocumentFragment();
+    classes.forEach((item) => fragment.appendChild(createClassCard(item)));
+    grid.appendChild(fragment);
+    observeReveals(grid);
+  }
+
+  const filterButtons = qsa("[data-filter]");
+
+  function applyFilter(filter) {
+    filterButtons.forEach((button) => button.classList.toggle("is-active", button.dataset.filter === filter));
+    qsa(".class-card", grid).forEach((card) => {
+      const group = card.dataset.group;
+      const visible = filter === "all" || group === filter;
+      card.hidden = !visible;
+      if (!visible) card.open = false;
+    });
+  }
+
+  filterButtons.forEach((button) => {
+    button.addEventListener("click", () => applyFilter(button.dataset.filter));
+  });
+
+  qsa("[data-filter-link]").forEach((link) => {
+    link.addEventListener("click", () => {
+      const targetFilter = link.dataset.filterLink;
+      window.setTimeout(() => applyFilter(targetFilter), 150);
+    });
+  });
+
+  qsa("[data-year]").forEach((el) => {
+    el.textContent = String(new Date().getFullYear());
+  });
+
+  const contactForm = qs("[data-contact-form]");
+  const formStatus = qs("[data-form-status]");
+
+  function buildMailto(formData) {
+    const subject = encodeURIComponent(`Führerschein-Anfrage: ${formData.get("license") || "Beratung"}`);
+    const body = encodeURIComponent(
+      [
+        `Name: ${formData.get("name") || ""}`,
+        `Telefon: ${formData.get("phone") || ""}`,
+        `E-Mail: ${formData.get("email") || ""}`,
+        `Wunschklasse: ${formData.get("license") || ""}`,
+        `Erreichbar: ${formData.get("time") || ""}`,
+        "",
+        formData.get("message") || ""
+      ].join("\n")
+    );
+    return `mailto:stefanbartl@gmx.net?subject=${subject}&body=${body}`;
+  }
+
+  contactForm?.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const formData = new FormData(contactForm);
+    const submit = qs("button[type='submit']", contactForm);
+    const originalText = submit.textContent;
+    submit.disabled = true;
+    submit.textContent = "Wird vorbereitet …";
+    formStatus.className = "form-status";
+    formStatus.textContent = "";
+
+    if (true) {
+      window.location.href = buildMailto(formData);
+      formStatus.textContent = "Dein E-Mail-Programm wurde geöffnet.";
+      formStatus.classList.add("is-success");
+      submit.disabled = false;
+      submit.textContent = originalText;
+      return;
+    }
+
+    try {
+      const response = await fetch(contactForm.action, {
+        method: "POST",
+        body: formData,
+        headers: { Accept: "application/json" }
+      });
+      const result = await response.json().catch(() => ({}));
+      if (!response.ok || !result.ok) throw new Error(result.message || "Übermittlung nicht möglich");
+      contactForm.reset();
+      formStatus.textContent = "Vielen Dank. Die Anfrage wurde übermittelt.";
+      formStatus.classList.add("is-success");
+    } catch (error) {
+      formStatus.innerHTML = `Die direkte Übermittlung ist auf diesem Server noch nicht eingerichtet. <a href="${buildMailto(formData)}">Anfrage per E-Mail öffnen</a>.`;
+      formStatus.classList.add("is-error");
+    } finally {
+      submit.disabled = false;
+      submit.textContent = originalText;
+    }
+  });
+
+
+  qsa("[data-legal-open]").forEach((link) => {
+    link.addEventListener("click", (event) => {
+      event.preventDefault();
+      const dialog = document.getElementById(link.dataset.legalOpen);
+      if (!dialog) return;
+      if (typeof dialog.showModal === "function") dialog.showModal();
+      else dialog.setAttribute("open", "");
+      document.body.classList.add("dialog-open");
+    });
+  });
+
+  qsa("[data-legal-close]").forEach((button) => {
+    button.addEventListener("click", () => {
+      const dialog = button.closest("dialog");
+      if (dialog?.close) dialog.close();
+      else dialog?.removeAttribute("open");
+      document.body.classList.remove("dialog-open");
+    });
+  });
+
+  qsa("dialog.legal-dialog").forEach((dialog) => {
+    dialog.addEventListener("click", (event) => {
+      const rect = dialog.getBoundingClientRect();
+      const inside = event.clientX >= rect.left && event.clientX <= rect.right && event.clientY >= rect.top && event.clientY <= rect.bottom;
+      if (!inside) {
+        dialog.close();
+        document.body.classList.remove("dialog-open");
+      }
+    });
+    dialog.addEventListener("close", () => document.body.classList.remove("dialog-open"));
+  });
+})();
+</script></body>
+</html>
