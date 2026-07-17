@@ -1,6 +1,6 @@
 <!doctype html>
 
-<html data-standalone="true" data-version="2026-07-y3f-logo-clean-footer" lang="de">
+<html data-standalone="true" data-version="2026-07-layout-fixes-mp" lang="de">
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
@@ -192,7 +192,7 @@ body.menu-open .site-header {
 .floating-card strong, .floating-card span, .floating-card a { display: block; }
 .floating-card strong { font-size: .95rem; }
 .floating-card span, .floating-card a { margin-top: 4px; color: var(--muted); font-size: .82rem; line-height: 1.35; }
-.floating-card-top { top: 12%; left: 0; }
+.floating-card-top { top: 18%; left: 6px; }
 .floating-card-bottom { bottom: 12%; right: -2%; }
 .hero-scroll { position: absolute; left: 28px; bottom: 48px; display: flex; align-items: center; gap: 12px; text-transform: uppercase; letter-spacing: .16em; font-size: .66rem; font-weight: 900; color: var(--muted); writing-mode: vertical-rl; }
 .hero-scroll span { width: 1px; height: 56px; background: var(--ink); position: relative; overflow: hidden; }
@@ -421,7 +421,7 @@ body.menu-open .site-header {
   .hero-grid { grid-template-columns: 1fr 430px; gap: 28px; }
   .hero-title { font-size: clamp(4rem, 8.5vw, 6.4rem); }
   .hero-visual { min-height: 590px; }
-  .floating-card-top { left: -18px; }
+  .floating-card-top { top: 16%; left: -8px; }
   .floating-card-bottom { right: -5px; }
   .process-grid, .faq-grid { grid-template-columns: 1fr; }
   .process-intro { position: static; }
@@ -484,7 +484,7 @@ body.menu-open .site-header {
   .orbit-one { width: 390px; height: 390px; }
   .orbit-two { width: 310px; height: 310px; }
   .floating-card { padding: 13px 15px; }
-  .floating-card-top { top: 8%; left: 0; }
+  .floating-card-top { top: 15%; left: 0; }
   .floating-card-bottom { bottom: 8%; right: 0; }
   .section-heading h2 { font-size: clamp(2.55rem, 13vw, 4rem); }
   .process-track { padding-left: 0; gap: 45px; }
@@ -1128,6 +1128,7 @@ window.YELLOW_DRIVE_CLASSES = [
     id: "mofa",
     group: "motorrad",
     badge: "Mofa",
+    code: "MP",
     title: "Mofa-Prüfbescheinigung",
     subtitle: "Der Einstieg für Fahrzeuge bis 25 km/h.",
     age: "15",
@@ -1292,7 +1293,7 @@ window.YELLOW_DRIVE_SOURCES = {
     details.innerHTML = `
       <summary>
         <div class="class-card-head">
-          <div class="class-code">${item.title}</div>
+          <div class="class-code">${item.code || item.title}</div>
           <div class="class-card-title">
             <span>${item.badge}</span>
             <h3>${item.title}</h3>
