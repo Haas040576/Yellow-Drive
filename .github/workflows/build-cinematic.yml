@@ -23,16 +23,28 @@ jobs:
       - name: Install render dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y xvfb libgl1 libegl1 ffmpeg blender python3-numpy
+          sudo apt-get install -y xvfb libgl1 libegl1 ffmpeg
           python -m pip install --upgrade pip
           pip install pillow numpy opencv-python-headless vtk
-      - name: Prepare the same Porsche 911 Carrera 4S without Draco compression
+          npm install --no-save @gltf-transform/core @gltf-transform/extensions draco3dgltf
+      - name: Decode the same Porsche 911 Carrera 4S asset
         run: |
           mkdir -p .cinematic-build
           curl -L --fail --retry 3 \
             https://raw.githubusercontent.com/playcanvas/web-components/main/examples/assets/models/porsche-911-carrera-4s.glb \
             -o .cinematic-build/porsche-draco.glb
-          blender --background --python-expr "import sys; sys.path.append('/usr/lib/python3/dist-packages'); import numpy; import bpy; bpy.ops.import_scene.gltf(filepath=r'${GITHUB_WORKSPACE}/.cinematic-build/porsche-draco.glb'); bpy.ops.export_scene.gltf(filepath=r'${GITHUB_WORKSPACE}/.cinematic-build/porsche-uncompressed.glb', export_format='GLB', export_draco_mesh_compression_enable=False)"
+          node --input-type=module <<'JS'
+          import { NodeIO } from '@gltf-transform/core';
+          import { ALL_EXTENSIONS } from '@gltf-transform/extensions';
+          import draco3d from 'draco3dgltf';
+          const io = new NodeIO()
+            .registerExtensions(ALL_EXTENSIONS)
+            .registerDependencies({'draco3d.decoder': await draco3d.createDecoderModule()});
+          const doc = await io.read('.cinematic-build/porsche-draco.glb');
+          const draco = doc.getRoot().listExtensionsUsed().find(e => e.extensionName === 'KHR_draco_mesh_compression');
+          if (draco) draco.dispose();
+          await io.write('.cinematic-build/porsche-uncompressed.glb', doc);
+          JS
           test -s .cinematic-build/porsche-uncompressed.glb
           python - <<'PY'
           from pathlib import Path
