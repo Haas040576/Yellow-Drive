@@ -1,0 +1,1 @@
+Vehicle presentation assets for the Yellow Drive class selector. Rendered from user-supplied licensed 3D source models.
