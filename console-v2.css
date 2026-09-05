@@ -1,0 +1,30 @@
+/* Console v2: applies only after the approved opening drive. */
+.drive-console{overflow:hidden}
+.console-stage{position:relative;isolation:isolate}
+.console-copy{z-index:6;min-width:0;padding-right:16px}
+.console-copy h1{font-size:clamp(4.8rem,8.6vw,9rem)!important;line-height:.8!important;white-space:nowrap;max-width:100%;overflow:visible}
+.console-copy.is-long-code h1{font-size:clamp(3.4rem,6.6vw,6.8rem)!important;letter-spacing:-.06em!important}
+.console-vehicle-shell{min-width:0;overflow:hidden!important;border-radius:28px;contain:paint;position:relative}
+.console-vehicle,.vehicle-still{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:center;z-index:4;pointer-events:none;transition:opacity .32s ease,transform .42s cubic-bezier(.2,.8,.2,1),filter .32s ease;filter:drop-shadow(0 30px 28px rgba(0,0,0,.5))}
+.vehicle-still{padding:8% 6%;transform:scale(.94)}
+.console-vehicle-shell.is-switching .console-vehicle,.console-vehicle-shell.is-switching .vehicle-still{opacity:.25;transform:translateY(6px) scale(.91)}
+.vehicle-control{z-index:10}
+.vehicle-hint,.vehicle-placeholder,.sketchfab-vehicle{display:none!important}
+.family-controls{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;width:min(100%,980px);margin:8px auto 0;padding:8px}
+.family-chip{border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.025);color:rgba(255,255,255,.55);border-radius:999px;padding:12px 18px;font-weight:650;font-size:.78rem;transition:background .25s ease,color .25s ease,border .25s ease,transform .25s ease}
+.family-chip:hover{color:#fff;border-color:rgba(255,255,255,.3);transform:translateY(-1px)}
+.family-chip.is-active{background:var(--yd-yellow);color:#11130f;border-color:var(--yd-yellow);box-shadow:0 0 30px rgba(223,227,57,.12)}
+.variant-controls{min-height:54px;display:flex;align-items:center;justify-content:center;gap:9px;margin:9px auto 0;max-width:760px}
+.variant-chip{min-width:72px;border:0;border-bottom:1px solid rgba(255,255,255,.15);background:transparent;color:rgba(255,255,255,.42);padding:11px 16px;font-weight:650;transition:.25s ease}
+.variant-chip:hover{color:white}.variant-chip.is-active{color:var(--yd-yellow);border-bottom-color:var(--yd-yellow)}
+.console-active-mobile{display:none!important}
+.location-section{min-height:64svh!important}.map-frame{min-height:64svh!important}.map-frame iframe{filter:grayscale(1) brightness(.52) contrast(.88)!important;opacity:.64!important}
+@media(max-width:900px){
+  .console-stage{grid-template-columns:1fr!important;padding-top:58px!important}.console-copy{text-align:center!important;padding:52px 0 0!important}.console-copy h1{font-size:clamp(4.8rem,20vw,7.2rem)!important}.console-copy.is-long-code h1{font-size:clamp(3.5rem,15vw,5.5rem)!important}.console-copy>p:last-child{max-width:none!important}
+  .console-active-mobile{display:flex!important;position:absolute;top:14px;left:50%;transform:translateX(-50%);z-index:20;padding:8px 12px;border:1px solid rgba(255,255,255,.13);border-radius:999px;background:rgba(7,9,7,.78);backdrop-filter:blur(14px);font-size:.7rem;color:rgba(255,255,255,.5);gap:8px;white-space:nowrap}.console-active-mobile strong{color:var(--yd-yellow);font-size:.82rem}
+  .console-vehicle-shell{height:48svh!important;width:100%!important;max-width:680px;margin:0 auto}.vehicle-still{padding:5% 5%;transform:scale(.98)}
+  .family-controls{overflow-x:auto;justify-content:flex-start;flex-wrap:nowrap;scrollbar-width:none;padding:8px max(8px,calc(50% - 50px));scroll-padding-inline:calc(50% - 50px);overscroll-behavior-inline:contain}.family-controls::-webkit-scrollbar{display:none}.family-chip{flex:0 0 auto;white-space:nowrap}
+  .variant-controls{overflow-x:auto;justify-content:center;max-width:100%;padding:0 16px;scrollbar-width:none}.variant-controls::-webkit-scrollbar{display:none}
+  .location-section{grid-template-columns:1fr!important;min-height:auto!important}.map-frame{min-height:34svh!important}.location-copy{padding-bottom:42px!important}
+}
+@media(max-width:640px){.drive-console{padding-left:14px!important;padding-right:14px!important}.console-vehicle-shell{height:43svh!important}.console-copy{padding-top:60px!important}.family-chip{padding:10px 15px}.variant-chip{min-width:62px;padding:10px 12px}.console-bottom{margin-top:30px!important}}
