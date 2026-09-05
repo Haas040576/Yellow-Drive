@@ -12,6 +12,14 @@
   const smoothstep = t => { t = clamp(t); return t * t * (3 - 2 * t); };
   const lerp = (a, b, t) => a + (b - a) * t;
 
+  const stopTravel = [.27, .53, .78];
+  stations.forEach((el, i) => {
+    const y = lerp(8, 74, stopTravel[i] ?? .5);
+    el.querySelectorAll('.station-glow,.station-marker,.station-copy').forEach(node => {
+      node.style.top = `${y}%`;
+    });
+  });
+
   // Three clean holds: Anmeldung, Theorie, Praxis.
   function travelled(p) {
     if (p < .24) return lerp(0, .27, smoothstep(p / .24));
@@ -61,12 +69,12 @@
 
     road.style.transform = `translate3d(0, ${roadY}vh, 0)`;
 
-    // The source top-view already points nose-down. Do not rotate it: the
-    // Porsche now visibly drives forward in the same direction as the scroll.
+    // The source top-view already points nose-down. No rotation: the Porsche
+    // now drives forward in the same direction as the scroll.
     car.style.transform = `translate3d(-50%, ${carY}vh, 0)`;
     if (shadow) shadow.style.transform = `translate3d(-50%, ${shadowY}vh, 0)`;
 
-    // Headlight cone begins at the front/nose, never behind the rear axle.
+    // The light cone starts at the nose and projects in front of the car.
     if (light) light.style.transform = `translate3d(-50%, ${headlightY}vh, 0)`;
 
     stations.forEach(el => {
