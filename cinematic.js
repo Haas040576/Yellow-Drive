@@ -11,8 +11,8 @@
   const smoothstep = t => { t = clamp(t); return t * t * (3 - 2 * t); };
   const lerp = (a, b, t) => a + (b - a) * t;
 
-  // Three clean holds are already built into the motion at roughly 27%, 54%
-  // and 80%. Later these exact holds receive Anmeldung, Theorie and Praxis.
+  // Three motion holds are reserved for Anmeldung, Theorie and Praxis.
+  // For this version they stay visually empty so only the drive is judged.
   function travelled(p) {
     if (p < .24) return lerp(0, .27, smoothstep(p / .24));
     if (p < .31) return .27;
@@ -36,8 +36,6 @@
     raf = 0;
     if (reduced) return;
 
-    // Damp scroll jumps so mouse wheel, trackpad and iPhone momentum all feel
-    // like one continuous mechanical movement instead of frame stepping.
     current += (target - current) * .115;
     if (Math.abs(target - current) < .00008) current = target;
 
@@ -46,9 +44,9 @@
     const roadY = -t * 165;
 
     road.style.transform = `translate3d(0, ${roadY}vh, 0)`;
-    car.style.transform = `translate3d(-50%, ${carY}vh, 0)`;
+    car.style.transform = `translate3d(-50%, ${carY}vh, 0) rotate(180deg)`;
     if (shadow) shadow.style.transform = `translate3d(-50%, ${carY + 2.4}vh, 0)`;
-    if (light) light.style.transform = `translate3d(-50%, ${carY - 27}vh, 0)`;
+    if (light) light.style.transform = `translate3d(-50%, ${carY + 22}vh, 0)`;
 
     if (current !== target) request();
   }
