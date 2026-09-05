@@ -1,0 +1,39 @@
+/* Refinements for the interactive console. The approved opening drive is untouched. */
+html,body{max-width:100%;overflow-x:hidden;overscroll-behavior-x:none}
+.drive-console,.console-stage,.console-controls,.license-carousel,.console-vehicle-shell,.location-section{max-width:100%;min-width:0}
+.drive-console{overflow-x:clip}
+.console-stage{grid-template-columns:minmax(150px,.46fr) minmax(420px,1.28fr) minmax(220px,.58fr);gap:clamp(24px,3vw,54px)}
+.console-copy{min-width:0;position:relative;z-index:7}
+.console-copy h1{font-size:clamp(5.2rem,9.4vw,10rem);max-width:100%;white-space:nowrap;line-height:.78;letter-spacing:-.075em}
+.console-copy>p:last-child{max-width:240px;line-height:1.16}
+.console-vehicle-shell{position:relative;min-width:0;overflow:hidden;border-radius:28px}
+.console-vehicle{transition:opacity .3s ease,transform .45s cubic-bezier(.2,.8,.2,1)}
+.sketchfab-vehicle{position:absolute;inset:0;width:100%;height:100%;border:0;z-index:4;background:transparent;opacity:0;pointer-events:none;transition:opacity .35s ease;transform:scale(1.04)}
+.sketchfab-vehicle.is-active{opacity:1;pointer-events:auto}
+.console-vehicle-shell.uses-sketchfab .console-vehicle{opacity:0;pointer-events:none}
+.console-active-mobile{display:none}
+.license-carousel{width:100%;min-width:0;overflow-x:auto;overflow-y:hidden;overscroll-behavior-inline:contain;scrollbar-width:none;scroll-behavior:smooth;touch-action:pan-x;contain:layout paint}
+.license-carousel::-webkit-scrollbar{display:none}
+.console-controls{width:min(100%,1120px);overflow:hidden}
+.drive-chip{flex:0 0 auto}
+
+/* A much quieter location block: address first, map becomes background context. */
+.location-section{position:relative;display:grid;grid-template-columns:minmax(280px,.55fr) minmax(0,1.45fr);gap:0;background:#0a0c0a;color:#f2f2ed;min-height:72svh;overflow:hidden;border-top:1px solid rgba(255,255,255,.08)}
+.location-copy{position:relative;z-index:3;padding:clamp(72px,8vw,130px) clamp(24px,5vw,76px);display:flex;flex-direction:column;justify-content:center;background:linear-gradient(90deg,#0a0c0a 72%,rgba(10,12,10,.92) 88%,rgba(10,12,10,0))}
+.location-copy>p{font-size:.7rem;color:rgba(255,255,255,.42);margin:0 0 32px}.location-copy h2{font-size:clamp(3.2rem,6.5vw,7rem);line-height:.86;letter-spacing:-.055em;margin:0}.location-meta{display:flex;flex-direction:column;align-items:flex-start;gap:7px;margin-top:42px;color:rgba(255,255,255,.6)}.location-meta a{margin-top:20px;color:#11130f;background:var(--yd-yellow);padding:12px 15px;font-weight:700;font-size:.78rem}
+.map-frame{position:relative;min-height:72svh;overflow:hidden;background:#111}
+.map-frame iframe{position:absolute;inset:-8%;width:116%;height:116%;border:0;filter:grayscale(1) contrast(.88) brightness(.58);opacity:.72;pointer-events:auto}
+.map-overlay{display:none!important}
+
+@media(max-width:900px){
+ .console-stage{grid-template-columns:1fr}.console-copy{text-align:center;padding-top:54px}.console-copy h1{font-size:clamp(5.1rem,20vw,8rem)}.console-copy>p:last-child{max-width:none}
+ .console-active-mobile{display:flex;position:absolute;top:16px;left:50%;transform:translateX(-50%);z-index:12;align-items:center;gap:9px;padding:8px 12px;border:1px solid rgba(255,255,255,.14);border-radius:999px;background:rgba(8,10,8,.72);backdrop-filter:blur(16px);font-size:.72rem;color:rgba(255,255,255,.58);white-space:nowrap}
+ .console-active-mobile strong{font-size:.82rem;color:var(--yd-yellow)}
+ .console-vehicle-shell{height:54svh;width:100%}
+ .location-section{grid-template-columns:1fr;min-height:auto}.location-copy{background:#0a0c0a;padding-bottom:58px}.map-frame{min-height:42svh}.map-frame iframe{inset:-4%;width:108%;height:108%}
+}
+@media(max-width:640px){
+ .drive-console{padding-left:14px;padding-right:14px}.console-copy{padding-top:64px}.console-copy h1{font-size:clamp(4.7rem,24vw,7rem)}
+ .console-vehicle-shell{height:47svh;border-radius:20px}.console-controls{margin-top:12px}.license-carousel{padding-inline:calc(50% - 31px);scroll-padding-inline:calc(50% - 31px)}
+ .drive-chip{min-width:62px}.location-copy h2{font-size:clamp(3.3rem,16vw,5rem)}
+}
