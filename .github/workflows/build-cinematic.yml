@@ -26,6 +26,9 @@ jobs:
           sudo apt-get install -y xvfb libgl1 libegl1 ffmpeg
           python -m pip install --upgrade pip
           pip install pillow numpy opencv-python-headless vtk
+      - name: Use the same Porsche 911 Carrera 4S asset source
+        run: |
+          sed -i 's|https://raw.githubusercontent.com/esc5221/drive-game/main/public/models/911.glb|https://raw.githubusercontent.com/playcanvas/web-components/main/examples/assets/models/porsche-911-carrera-4s.glb|' tools/build_web_cinematic.py
       - name: Render website assets from selected source assets
         run: xvfb-run -a python tools/build_web_cinematic.py
       - name: Commit rendered assets
