@@ -39,10 +39,10 @@
         <div class="console-vehicle-shell reveal" id="consoleVehicleShell">
           <div class="console-active-mobile">Klasse <strong id="activeMobileClass">B</strong></div>
           <div class="vehicle-spotlight"></div><div class="vehicle-floor"></div>
-          <model-viewer id="consoleVehicle" class="console-vehicle" src="https://raw.githubusercontent.com/playcanvas/web-components/main/examples/assets/models/porsche-911-carrera-4s.glb" interaction-prompt="none" shadow-intensity="1.15" shadow-softness=".9" exposure="1.05" environment-image="neutral" camera-orbit="18deg 80deg 108%" alt="Porsche 911 Carrera 4S"></model-viewer>
+          <img id="consoleVehicle" class="console-vehicle" src="assets/cinematic/porsche-top.webp" alt="Porsche Beispiel-Fahrzeug" draggable="false">
           <img id="vehicleStill" class="vehicle-still" alt="" hidden>
-          <button class="vehicle-control vehicle-control-left" type="button" data-license-prev aria-label="Vorherige Klasse">←</button>
-          <button class="vehicle-control vehicle-control-right" type="button" data-license-next aria-label="Nächste Klasse">→</button>
+          <button class="vehicle-control vehicle-control-left" type="button" data-license-prev aria-label="Vorherige Fahrzeugfamilie">←</button>
+          <button class="vehicle-control vehicle-control-right" type="button" data-license-next aria-label="Nächste Fahrzeugfamilie">→</button>
         </div>
         <div class="console-metrics reveal">
           <div class="metric"><span>Preisrahmen</span><strong id="consolePrice">2.500–4.500 €</strong><small>grobe Orientierung</small></div>
@@ -71,8 +71,8 @@
   </main>
 
   <button class="chat-launcher" type="button" aria-label="Yellow Drive Assistent öffnen" data-open-chat><span class="chat-dot"></span><span>Frag Yellow Drive</span></button>
-  <aside class="chat-panel" id="chatPanel" aria-hidden="true"><div class="chat-header"><div><span class="chat-dot"></span><div><strong>Yellow Drive Assistent</strong><small>Locker fragen. Kurz erklärt.</small></div></div><button type="button" aria-label="Chat schließen" data-close-chat>×</button></div><div class="chat-messages" id="chatMessages"><div class="chat-message bot">Hey. Sag einfach, was du wissen willst – Klasse, Preis, Theorie, Praxis oder was zu dir passt.</div></div><div class="chat-suggestions"><button type="button" data-chat-question="Was kostet Klasse B ungefähr?">Kosten B</button><button type="button" data-chat-question="Was ist B197?">B197</button><button type="button" data-chat-question="Welche Motorradklasse passt zu mir?">Motorrad</button></div><form class="chat-form" id="chatForm"><input id="chatInput" type="text" autocomplete="off" placeholder="Frag einfach …" aria-label="Nachricht an Yellow Drive Assistent"><button type="submit">Senden</button></form><p class="chat-note" id="chatNote">Auf der Live-Seite antwortet der Assistent über ein KI-Backend. In der reinen GitHub-Vorschau fällt er auf lokale Antworten zurück.</p></aside>
+  <aside class="chat-panel" id="chatPanel" aria-hidden="true"><div class="chat-header"><div><span class="chat-dot"></span><div><strong>Yellow Drive Assistent</strong><small>Locker fragen. Kurz erklärt.</small></div></div><button type="button" aria-label="Chat schließen" data-close-chat>×</button></div><div class="chat-messages" id="chatMessages"><div class="chat-message bot">Hey. Sag einfach, was du wissen willst – Klasse, Preis, Theorie, Praxis oder was zu dir passt.</div></div><div class="chat-suggestions"><button type="button" data-chat-question="Was kostet Klasse B ungefähr?">Kosten B</button><button type="button" data-chat-question="Was ist B197?">B197</button><button type="button" data-chat-question="Welche Motorradklasse passt zu mir?">Motorrad</button></div><form class="chat-form" id="chatForm"><input id="chatInput" type="text" autocomplete="off" placeholder="Frag einfach …" aria-label="Nachricht an Yellow Drive Assistent"><button type="submit">Senden</button></form><p class="chat-note" id="chatNote">Stabile Vorschau ohne externen 3D-Loader.</p></aside>
   <footer><span>YELLOW DRIVE</span><span>Reschstrasse 2 · 82418 Murnau</span><span>Porsche 911 Carrera 4S — Karol Miklas — CC BY-SA 4.0<br>Asphalt Track & Fir Tree 01 — Poly Haven — CC0</span></footer>
-  <script src="cinematic.js" defer></script><script src="viewer-loader.js" defer></script><script src="site.js" defer></script>
+  <script src="cinematic.js" defer></script><script src="site.js" defer></script>
 </body>
 </html>
