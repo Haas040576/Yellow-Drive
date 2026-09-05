@@ -17,11 +17,6 @@
   </header>
 
   <main>
-    <!--
-      Phase 1: only the motion. No chapter copy inside the animation.
-      The three intentional holds are already in cinematic.js and will later
-      receive Anmeldung / Theorie / Praxis overlays once the motion is approved.
-    -->
     <section class="drive" id="drive" aria-label="Scrollgesteuerte Fahrt">
       <div class="drive-stage">
         <div class="scene-bed" aria-hidden="true"></div>
@@ -31,6 +26,33 @@
         <img class="car" id="car" src="assets/cinematic/porsche-top.webp" alt="" aria-hidden="true" draggable="false">
         <div class="night-grade" aria-hidden="true"></div>
         <div class="edge-vignette" aria-hidden="true"></div>
+
+        <div class="drive-station station-one" data-range=".24,.31" aria-hidden="true">
+          <div class="station-glow"></div>
+          <div class="station-marker"><span>01</span></div>
+          <div class="station-copy">
+            <p>Anmeldung</p>
+            <small>Klasse wählen · Unterlagen klären · Start planen</small>
+          </div>
+        </div>
+
+        <div class="drive-station station-two" data-range=".51,.58" aria-hidden="true">
+          <div class="station-glow"></div>
+          <div class="station-marker"><span>02</span></div>
+          <div class="station-copy">
+            <p>Theorie</p>
+            <small>Verstehen · vorbereiten · Prüfung bestehen</small>
+          </div>
+        </div>
+
+        <div class="drive-station station-three" data-range=".78,.85" aria-hidden="true">
+          <div class="station-glow"></div>
+          <div class="station-marker"><span>03</span></div>
+          <div class="station-copy">
+            <p>Praxis</p>
+            <small>Fahrstunden · Sonderfahrten · sicher zur Prüfung</small>
+          </div>
+        </div>
       </div>
     </section>
 
