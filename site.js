@@ -16,19 +16,33 @@
     trailer:[{key:'BE',type:'Auto + Anhänger',price:'800–1.500 €',age:'mit B',ageNote:'B erforderlich',exam:'Praxis',text:'Für schwerere Anhänger.'},{key:'B96',type:'Anhänger-Erweiterung',price:'300–500 €',age:'mit B',ageNote:'B erforderlich',exam:'keine Prüfung',text:'Erweiterung für Gespanne bis 4,25 t.'}],
     tractor:[{key:'L',type:'Landwirtschaft',price:'auf Anfrage',age:'16',ageNote:'Direkteinstieg',exam:'Theorie',text:'Für bestimmte land- und forstwirtschaftliche Zugmaschinen.'}]
   };
+
+  // These are local, pre-rendered assets extracted from the supplied 3D ZIPs.
+  // No third-party viewer, WebGL model loader or external overlay is used at runtime.
   const vehicleArt={
-    auto:'assets/vehicles/auto-studio.svg',
-    motorcycle:'assets/vehicles/motorcycle-studio.svg',
-    scooter:'assets/vehicles/scooter-studio.svg',
-    trailer:'assets/vehicles/trailer-studio.svg',
-    tractor:'assets/vehicles/tractor-studio.svg'
+    auto:'assets/vehicles/rendered/auto.svg',
+    motorcycle:'assets/vehicles/rendered/motorcycle.svg',
+    scooter:'assets/vehicles/rendered/scooter.svg',
+    trailer:'assets/vehicles/rendered/trailer.svg',
+    tractor:'assets/vehicles/rendered/tractor.svg'
   };
+  Object.values(vehicleArt).forEach(src=>{const preload=new Image();preload.decoding='async';preload.src=src});
+
   const order=['auto','motorcycle','scooter','trailer','tractor'];
   let family='auto',variant=0;
   const $=id=>document.getElementById(id);
   const title=$('consoleTitle'),subtitle=$('consoleSubtitle'),price=$('consolePrice'),age=$('consoleAge'),ageNote=$('consoleAgeNote'),exam=$('consoleExam'),desc=$('consoleDescription'),mail=$('consoleMail'),progress=$('consoleProgressBar'),index=$('consoleIndex'),mobile=$('activeMobileClass'),variantControls=$('variantControls'),vehicle=$('consoleVehicle'),still=$('vehicleStill'),shell=$('consoleVehicleShell');
   const allItems=()=>order.flatMap(k=>groups[k]);
   const current=()=>groups[family][variant];
+
+  if(still)still.hidden=true;
+  if(vehicle){
+    vehicle.hidden=false;
+    vehicle.src=vehicleArt.auto;
+    vehicle.dataset.family='auto';
+    vehicle.alt='Auto – Yellow Drive Fahrzeugdarstellung';
+    vehicle.draggable=false;
+  }
 
   function renderVariants(){
     if(!variantControls)return;
@@ -47,18 +61,23 @@
   function showVehicle(animate=true){
     if(!vehicle)return;
     const next=vehicleArt[family];
-    const same=vehicle.dataset.family===family;
-    if(still)still.hidden=true;
-    vehicle.hidden=false;
-    if(same)return;
+    if(vehicle.dataset.family===family)return;
     if(animate)shell?.classList.add('is-switching');
-    window.setTimeout(()=>{
+
+    // Keep the previous image visible until the tiny local replacement is decoded.
+    const replacement=new Image();
+    replacement.decoding='async';
+    const swap=()=>{
       vehicle.src=next;
       vehicle.alt=`${current().type} – Yellow Drive Fahrzeugdarstellung`;
       vehicle.dataset.family=family;
       vehicle.style.setProperty('--vehicle-tilt','0deg');
-      window.setTimeout(()=>shell?.classList.remove('is-switching'),90);
-    },animate?125:0);
+      requestAnimationFrame(()=>setTimeout(()=>shell?.classList.remove('is-switching'),70));
+    };
+    replacement.onload=swap;
+    replacement.onerror=swap;
+    replacement.src=next;
+    if(replacement.complete)swap();
   }
 
   function render(animateVehicle=true){
@@ -88,15 +107,17 @@
   document.querySelectorAll('[data-license-prev]').forEach(b=>b.onclick=()=>{const i=(order.indexOf(family)-1+order.length)%order.length;family=order[i];variant=0;render(true)});
   document.querySelectorAll('[data-license-next]').forEach(b=>b.onclick=()=>{const i=(order.indexOf(family)+1)%order.length;family=order[i];variant=0;render(true)});
 
+  // Showroom movement is intentionally limited to five degrees in each direction.
+  // There is no zoom, vertical rotation or free 360-degree model control.
   if(shell&&vehicle&&!matchMedia('(prefers-reduced-motion: reduce)').matches){
     let touchActive=false,touchStartX=0;
     const setTilt=n=>vehicle.style.setProperty('--vehicle-tilt',`${Math.max(-5,Math.min(5,n)).toFixed(2)}deg`);
     shell.addEventListener('pointermove',e=>{
       if(e.pointerType==='mouse'){
         const r=shell.getBoundingClientRect();
-        setTilt(((e.clientX-r.left)/r.width-.5)*9);
+        setTilt(((e.clientX-r.left)/Math.max(1,r.width)-.5)*10);
       }else if(touchActive){
-        setTilt((e.clientX-touchStartX)/22);
+        setTilt((e.clientX-touchStartX)/20);
       }
     },{passive:true});
     shell.addEventListener('pointerdown',e=>{if(e.pointerType!=='mouse'){touchActive=true;touchStartX=e.clientX;shell.setPointerCapture?.(e.pointerId)}},{passive:true});
