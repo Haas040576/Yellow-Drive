@@ -8,8 +8,19 @@
   <title>Fahrschule Yellow-Drive — Dein Weg. Deine Freiheit.</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="preconnect" href="https://dl.polyhaven.org" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;650;750;850;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="cinematic.css">
+  <link rel="stylesheet" href="cinematic-extra.css">
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.module.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.180.0/examples/jsm/"
+      }
+    }
+  </script>
 </head>
 <body>
   <header class="topbar">
@@ -33,17 +44,11 @@
           <div class="sun"></div>
           <div class="mountains"></div>
           <div class="haze"></div>
-          <div class="road-space">
-            <div class="shoulder"></div>
-          </div>
+          <div class="road-space"><div class="shoulder"></div></div>
           <div class="speed-lines"></div>
           <div class="car">
-            <span class="wheel l1"></span>
-            <span class="wheel r1"></span>
-            <div class="car-shell">
-              <span class="rear-light left"></span>
-              <span class="rear-light right"></span>
-            </div>
+            <span class="wheel l1"></span><span class="wheel r1"></span>
+            <div class="car-shell"><span class="rear-light left"></span><span class="rear-light right"></span></div>
           </div>
         </div>
 
@@ -103,30 +108,9 @@
 
       <section class="classes" id="klassen" aria-label="Führerscheinklassen">
         <div class="class-grid">
-          <a class="class-card" href="#kontakt">
-            <span class="tag">Auto</span>
-            <div>
-              <h3>B / BF17 / B197</h3>
-              <p>PKW-Ausbildung mit Schalt- oder Automatikanteilen und begleitetem Fahren ab 17.</p>
-            </div>
-            <span class="arrow">↗</span>
-          </a>
-          <a class="class-card" href="#kontakt">
-            <span class="tag">Motorrad & Zweirad</span>
-            <div>
-              <h3>A / A1 / A2 / AM / MOFA</h3>
-              <p>Vom Einstieg auf dem Zweirad bis zur offenen Motorradklasse.</p>
-            </div>
-            <span class="arrow">↗</span>
-          </a>
-          <a class="class-card" href="#kontakt">
-            <span class="tag">Anhänger & Landwirtschaft</span>
-            <div>
-              <h3>BE / B96 / L</h3>
-              <p>Ausbildung für Anhängerkombinationen und land- oder forstwirtschaftliche Zugmaschinen.</p>
-            </div>
-            <span class="arrow">↗</span>
-          </a>
+          <a class="class-card" href="#kontakt"><span class="tag">Auto</span><div><h3>B / BF17 / B197</h3><p>PKW-Ausbildung mit Schalt- oder Automatikanteilen und begleitetem Fahren ab 17.</p></div><span class="arrow">↗</span></a>
+          <a class="class-card" href="#kontakt"><span class="tag">Motorrad & Zweirad</span><div><h3>A / A1 / A2 / AM / MOFA</h3><p>Vom Einstieg auf dem Zweirad bis zur offenen Motorradklasse.</p></div><span class="arrow">↗</span></a>
+          <a class="class-card" href="#kontakt"><span class="tag">Anhänger & Landwirtschaft</span><div><h3>BE / B96 / L</h3><p>Ausbildung für Anhängerkombinationen und land- oder forstwirtschaftliche Zugmaschinen.</p></div><span class="arrow">↗</span></a>
         </div>
       </section>
 
@@ -143,10 +127,13 @@
         </div>
       </section>
 
-      <div class="legal-note">Fahrschule Yellow-Drive · Inhaber Stefan Bartl · Reschstrasse 2 · 82418 Murnau</div>
+      <div class="legal-note">
+        <span>Fahrschule Yellow-Drive · Inhaber Stefan Bartl · Reschstrasse 2 · 82418 Murnau</span>
+        <span class="third-party-credit">3D-Demofahrzeug: Car Concept, DGG / Eric Chadwick, CC BY 4.0 · HDRI & Materialien: Poly Haven, CC0</span>
+      </div>
     </div>
   </main>
 
-  <script src="cinematic.js" defer></script>
+  <script type="module" src="cinematic.js"></script>
 </body>
 </html>
