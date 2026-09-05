@@ -10,50 +10,23 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="preconnect" href="https://dl.polyhaven.org" crossorigin>
+  <link rel="preconnect" href="https://raw.githubusercontent.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;650;750;850;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="cinematic.css">
   <link rel="stylesheet" href="cinematic-extra.css">
-  <script type="importmap">
-    {
-      "imports": {
-        "three": "https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.module.js",
-        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.180.0/examples/jsm/"
-      }
-    }
-  </script>
 </head>
 <body>
   <header class="topbar">
-    <a class="brand" href="#start" aria-label="Yellow Drive Startseite">
-      <span class="brand-dot" aria-hidden="true"></span>
-      <span>YELLOW DRIVE</span>
-    </a>
-    <nav class="topnav" aria-label="Hauptnavigation">
-      <a href="#klassen">Klassen</a>
-      <a href="#weg">Dein Weg</a>
-      <a class="pill" href="#kontakt">Jetzt starten</a>
-    </nav>
+    <a class="brand" href="#start" aria-label="Yellow Drive Startseite"><span class="brand-dot" aria-hidden="true"></span><span>YELLOW DRIVE</span></a>
+    <nav class="topnav" aria-label="Hauptnavigation"><a href="#klassen">Klassen</a><a href="#weg">Dein Weg</a><a class="pill" href="#kontakt">Jetzt starten</a></nav>
   </header>
 
   <main>
     <section class="scroll-story" id="start" aria-label="Dein Weg zum Führerschein">
       <div class="cinematic-stage">
         <canvas class="frame-canvas" aria-hidden="true"></canvas>
-
-        <div class="fallback-world" aria-hidden="true">
-          <div class="sun"></div>
-          <div class="mountains"></div>
-          <div class="haze"></div>
-          <div class="road-space"><div class="shoulder"></div></div>
-          <div class="speed-lines"></div>
-          <div class="car">
-            <span class="wheel l1"></span><span class="wheel r1"></span>
-            <div class="car-shell"><span class="rear-light left"></span><span class="rear-light right"></span></div>
-          </div>
-        </div>
-
-        <div class="vignette" aria-hidden="true"></div>
-        <div class="grain" aria-hidden="true"></div>
+        <div class="fallback-world" aria-hidden="true"></div>
+        <div class="vignette" aria-hidden="true"></div><div class="grain" aria-hidden="true"></div>
 
         <div class="hero-copy">
           <div class="kicker">Fahrschule Yellow-Drive · Murnau</div>
@@ -62,75 +35,24 @@
           <div class="scroll-cue"><i aria-hidden="true"></i> Scroll to drive</div>
         </div>
 
-        <article class="station left" data-station="anmeldung">
-          <div class="num">01 — Anmeldung</div>
-          <h2>START<br>EASY.</h2>
-          <p>Persönliche Beratung bei Yellow-Drive, passende Führerscheinklasse wählen und die benötigten Unterlagen gemeinsam vorbereiten.</p>
-          <span class="detail">Dein Startpunkt</span>
-        </article>
+        <article class="station left" data-station="anmeldung"><div class="num">01 — Anmeldung</div><h2>START<br>EASY.</h2><p>Persönliche Beratung bei Yellow-Drive, passende Führerscheinklasse wählen und die benötigten Unterlagen gemeinsam vorbereiten.</p><span class="detail">Dein Startpunkt</span></article>
+        <article class="station right" data-station="theorie"><div class="num">02 — Theorie</div><h2>CHECK.<br>VERSTEH.</h2><p>Klare Vorbereitung auf die theoretische Prüfung – passend zu deiner Führerscheinklasse und deinem Ausbildungsweg.</p><span class="detail">Sicher zur Prüfung</span></article>
+        <article class="station left" data-station="praxis"><div class="num">03 — Praxis</div><h2>FAHR.<br>ECHT.</h2><p>Grundausbildung, Überland-, Autobahn- und Nachtfahrten – mit dem Ziel, sicher und gelassen am Straßenverkehr teilzunehmen.</p><span class="detail">Auf die Straße</span></article>
+        <article class="station right" data-station="ziel"><div class="num">04 — Ziel</div><h2>DU<br>FÄHRST.</h2><p>Prüfung geschafft. Ab jetzt beginnt deine eigene Strecke.</p><span class="detail">Deine Freiheit</span></article>
 
-        <article class="station right" data-station="theorie">
-          <div class="num">02 — Theorie</div>
-          <h2>CHECK.<br>VERSTEH.</h2>
-          <p>Klare Vorbereitung auf die theoretische Prüfung – passend zu deiner Führerscheinklasse und deinem Ausbildungsweg.</p>
-          <span class="detail">Sicher zur Prüfung</span>
-        </article>
-
-        <article class="station left" data-station="praxis">
-          <div class="num">03 — Praxis</div>
-          <h2>FAHR.<br>ECHT.</h2>
-          <p>Grundausbildung, Überland-, Autobahn- und Nachtfahrten – mit dem Ziel, sicher und gelassen am Straßenverkehr teilzunehmen.</p>
-          <span class="detail">Auf die Straße</span>
-        </article>
-
-        <article class="station right" data-station="ziel">
-          <div class="num">04 — Ziel</div>
-          <h2>DU<br>FÄHRST.</h2>
-          <p>Prüfung geschafft. Ab jetzt beginnt deine eigene Strecke.</p>
-          <span class="detail">Deine Freiheit</span>
-        </article>
-
-        <aside class="progress-ui" aria-hidden="true">
-          <div class="progress-track"><div class="progress-fill"></div></div>
-          <div class="progress-label">Start</div>
-        </aside>
+        <aside class="progress-ui" aria-hidden="true"><div class="progress-track"><div class="progress-fill"></div></div><div class="progress-label">Fahrt I</div></aside>
       </div>
     </section>
 
     <div class="after-story">
-      <section class="intro" id="weg">
-        <div class="label">Yellow Drive / Murnau</div>
-        <div>
-          <h2>MIT RUHE.<br>MIT SICHERHEIT.<br>ANS ZIEL.</h2>
-          <p>Yellow-Drive bildet in Murnau für PKW, Motorrad, Anhänger und Landwirtschaft aus – persönlich, praxisnah und mit dem Ziel, dass du dich später wirklich sicher fühlst.</p>
-        </div>
-      </section>
-
-      <section class="classes" id="klassen" aria-label="Führerscheinklassen">
-        <div class="class-grid">
-          <a class="class-card" href="#kontakt"><span class="tag">Auto</span><div><h3>B / BF17 / B197</h3><p>PKW-Ausbildung mit Schalt- oder Automatikanteilen und begleitetem Fahren ab 17.</p></div><span class="arrow">↗</span></a>
-          <a class="class-card" href="#kontakt"><span class="tag">Motorrad & Zweirad</span><div><h3>A / A1 / A2 / AM / MOFA</h3><p>Vom Einstieg auf dem Zweirad bis zur offenen Motorradklasse.</p></div><span class="arrow">↗</span></a>
-          <a class="class-card" href="#kontakt"><span class="tag">Anhänger & Landwirtschaft</span><div><h3>BE / B96 / L</h3><p>Ausbildung für Anhängerkombinationen und land- oder forstwirtschaftliche Zugmaschinen.</p></div><span class="arrow">↗</span></a>
-        </div>
-      </section>
-
-      <section class="cta" id="kontakt">
-        <div class="cta-inner">
-          <div class="mini">Fahrschule Yellow-Drive · Inhaber Stefan Bartl</div>
-          <h2>READY<br>TO DRIVE?</h2>
-          <div class="contact-stack">
-            <a href="tel:+4988413840">08841-3840 <span>↗</span></a>
-            <a href="tel:+491718779310">0171-8779310 <span>↗</span></a>
-            <a href="mailto:stefanbartl@gmx.net">stefanbartl@gmx.net <span>↗</span></a>
-            <div class="contact-address">Reschstrasse 2 · 82418 Murnau</div>
-          </div>
-        </div>
-      </section>
-
-      <div class="legal-note">
-        <span>Fahrschule Yellow-Drive · Inhaber Stefan Bartl · Reschstrasse 2 · 82418 Murnau</span>
-        <span class="third-party-credit">3D-Demofahrzeug: Car Concept, DGG / Eric Chadwick, CC BY 4.0 · HDRI & Materialien: Poly Haven, CC0</span>
-      </div>
+      <section class="intro" id="weg"><div class="label">Yellow Drive / Murnau</div><div><h2>MIT RUHE.<br>MIT SICHERHEIT.<br>ANS ZIEL.</h2><p>Yellow-Drive bildet in Murnau für PKW, Motorrad, Anhänger und Landwirtschaft aus – persönlich, praxisnah und mit dem Ziel, dass du dich später wirklich sicher fühlst.</p></div></section>
+      <section class="classes" id="klassen" aria-label="Führerscheinklassen"><div class="class-grid">
+        <a class="class-card" href="#kontakt"><span class="tag">Auto</span><div><h3>B / BF17 / B197</h3><p>PKW-Ausbildung mit Schalt- oder Automatikanteilen und begleitetem Fahren ab 17.</p></div><span class="arrow">↗</span></a>
+        <a class="class-card" href="#kontakt"><span class="tag">Motorrad & Zweirad</span><div><h3>A / A1 / A2 / AM / MOFA</h3><p>Vom Einstieg auf dem Zweirad bis zur offenen Motorradklasse.</p></div><span class="arrow">↗</span></a>
+        <a class="class-card" href="#kontakt"><span class="tag">Anhänger & Landwirtschaft</span><div><h3>BE / B96 / L</h3><p>Ausbildung für Anhängerkombinationen und land- oder forstwirtschaftliche Zugmaschinen.</p></div><span class="arrow">↗</span></a>
+      </div></section>
+      <section class="cta" id="kontakt"><div class="cta-inner"><div class="mini">Fahrschule Yellow-Drive · Inhaber Stefan Bartl</div><h2>READY<br>TO DRIVE?</h2><div class="contact-stack"><a href="tel:+4988413840">08841-3840 <span>↗</span></a><a href="tel:+491718779310">0171-8779310 <span>↗</span></a><a href="mailto:stefanbartl@gmx.net">stefanbartl@gmx.net <span>↗</span></a><div class="contact-address">Reschstrasse 2 · 82418 Murnau</div></div></div></section>
+      <div class="legal-note"><span>Fahrschule Yellow-Drive · Inhaber Stefan Bartl · Reschstrasse 2 · 82418 Murnau</span><span class="third-party-credit">3D-Fahrzeug: „Porsche 911 Carrera 4S“ von Karol Miklas, CC BY-SA 4.0 · Tief Etz, Asphalt Track & Fir Tree 01: Poly Haven, CC0</span></div>
     </div>
   </main>
 
