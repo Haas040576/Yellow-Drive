@@ -75,7 +75,9 @@ center = W // 2
 for y in range(-120, H + 120, 150):
     d.rounded_rectangle((center - 4, y, center + 4, y + 72), radius=4, fill=(224, 225, 216, 210))
 
-# Use the Fir Tree foliage texture as subtle dark roadside canopy from above.
+# Fir Tree foliage is kept strictly outside the road and shoulder. Previously
+# parts of the flat top-view texture could overlap the asphalt and read like
+# brown tape/branches lying on the carriageway. Trees now sit clearly beside it.
 twig = Image.open(TWIG).convert('RGB')
 alpha = Image.open(ALPHA).convert('L')
 if twig.size != alpha.size:
@@ -83,20 +85,27 @@ if twig.size != alpha.size:
 fir = twig.copy(); fir.putalpha(alpha)
 fir.thumbnail((420, 420), Image.Resampling.LANCZOS)
 fir = ImageEnhance.Brightness(fir).enhance(.30)
+tree_layer = Image.new('RGBA', (W, H), (0, 0, 0, 0))
 for i, y in enumerate(range(-80, H + 220, 220)):
     for side in (-1, 1):
         size = int(250 + 70 * (0.5 + 0.5 * math.sin(i * 1.7 + side)))
         f = fir.resize((size, size), Image.Resampling.LANCZOS)
         f = f.rotate((i * 23 + side * 11) % 360, resample=Image.Resampling.BICUBIC, expand=True)
-        a = f.getchannel('A').point(lambda v: int(v * .72))
+        a = f.getchannel('A').point(lambda v: int(v * .66))
         f.putalpha(a)
         if side < 0:
-            x = road_x0 - int(f.width * .78)
+            x = road_x0 - int(f.width * .96)
         else:
-            x = road_x1 - int(f.width * .22)
-        canvas = canvas.convert('RGBA')
-        canvas.alpha_composite(f, (x, y - f.height // 4))
-        canvas = canvas.convert('RGB')
+            x = road_x1 - int(f.width * .04)
+        tree_layer.alpha_composite(f, (x, y - f.height // 4))
+
+# Hard safety mask: no tree pixel can ever cover the road or its shoulder.
+tree_alpha = np.array(tree_layer.getchannel('A'), dtype=np.uint8)
+tree_alpha[:, max(0, road_x0 - 34):min(W, road_x1 + 34)] = 0
+tree_layer.putalpha(Image.fromarray(tree_alpha, 'L'))
+canvas = canvas.convert('RGBA')
+canvas.alpha_composite(tree_layer)
+canvas = canvas.convert('RGB')
 
 # Night grade + vignette, but keep asphalt readable.
 arr = np.array(canvas).astype(np.float32)
