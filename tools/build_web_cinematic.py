@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 from pathlib import Path
-import math, os, urllib.request
+import math, os, urllib.request, subprocess
 import numpy as np
 import cv2
 from PIL import Image, ImageEnhance
@@ -32,15 +32,20 @@ ASPH=get('https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/asphalt_track/
 TWIG=get('https://dl.polyhaven.org/file/ph-assets/Models/png/1k/fir_tree_01/fir_tree_01_twig_diff_1k.png','fir_tree_01_twig_diff_1k.png')
 ALPHA=get('https://dl.polyhaven.org/file/ph-assets/Models/png/1k/fir_tree_01/fir_tree_01_twig_alpha_1k.png','fir_tree_01_twig_alpha_1k.png')
 
-os.environ['OPENCV_IO_ENABLE_OPENEXR']='1'
-hdr=cv2.imread(str(EXR),cv2.IMREAD_UNCHANGED)
-if hdr is None: raise RuntimeError('Could not decode Tief Etz EXR')
-rgb=np.maximum(hdr[...,::-1],0).astype(np.float32)
-rgb=rgb*.78
-rgb=rgb/(1.0+rgb)
-rgb=np.power(np.clip(rgb,0,1),1/2.2)
-rgb[...,1]*=.98; rgb[...,2]*=.95
-pano=(np.clip(rgb,0,1)*255).astype(np.uint8)
+# GitHub runners' OpenCV build cannot reliably decode this EXR. FFmpeg can,
+# so convert the selected Tief Etz EXR to a lossless PNG first, then continue
+# with the exact same perspective projection used by the cinematic renderer.
+exr_png=TMP/'tief_etz_decoded.png'
+subprocess.run([
+    'ffmpeg','-y','-loglevel','error','-i',str(EXR),'-frames:v','1',str(exr_png)
+],check=True)
+pano=np.array(Image.open(exr_png).convert('RGB'))
+# Gentle photographic grade to keep highlights controlled and forest greens natural.
+pil_pano=Image.fromarray(pano)
+pil_pano=ImageEnhance.Brightness(pil_pano).enhance(.82)
+pil_pano=ImageEnhance.Contrast(pil_pano).enhance(1.05)
+pil_pano=ImageEnhance.Color(pil_pano).enhance(.94)
+pano=np.array(pil_pano)
 PH,PW=pano.shape[:2]
 asph=np.array(Image.open(ASPH).convert('RGB'))
 W,H=1280,720
@@ -73,18 +78,18 @@ views=[(52,-6,80,620),(56,-4,70,650),(61,-3,64,675),(57,-5,60,645)]
 road_frames=[]
 for yaw,pitch,fov,cx in views:
     im=road_asphalt(project(yaw,pitch,fov),.19,400,cx)
-    pil=Image.fromarray(im);pil=ImageEnhance.Brightness(pil).enhance(.78);pil=ImageEnhance.Contrast(pil).enhance(1.08)
+    pil=Image.fromarray(im);pil=ImageEnhance.Brightness(pil).enhance(.84);pil=ImageEnhance.Contrast(pil).enhance(1.08)
     road_frames.append(pil)
 road_sprite=Image.new('RGB',(W*4,H))
 for i,im in enumerate(road_frames):road_sprite.paste(im,(i*W,0))
-road_sprite.save(OUT/'roads-sprite-hq.webp','WEBP',quality=83,method=6)
-road_frames[0].save(OUT/'poster.webp','WEBP',quality=84,method=6)
+road_sprite.save(OUT/'roads-sprite-hq.webp','WEBP',quality=84,method=6)
+road_frames[0].save(OUT/'poster.webp','WEBP',quality=85,method=6)
 
 twig=Image.open(TWIG).convert('RGB');alpha=Image.open(ALPHA).convert('L')
 if twig.size!=alpha.size: alpha=alpha.resize(twig.size,Image.Resampling.LANCZOS)
 fir=twig.copy();fir.putalpha(alpha)
 fir.thumbnail((512,512),Image.Resampling.LANCZOS)
-fir.save(OUT/'fir-foreground.webp','WEBP',quality=80,method=6)
+fir.save(OUT/'fir-foreground.webp','WEBP',quality=82,method=6)
 
 ren=vtk.vtkRenderer();ren.SetBackground(0,0,0);ren.SetBackgroundAlpha(0)
 win=vtk.vtkRenderWindow();win.SetOffScreenRendering(1);win.SetSize(720,500);win.SetAlphaBitPlanes(1);win.SetMultiSamples(4);win.AddRenderer(ren)
@@ -103,6 +108,6 @@ for side in [-2,-1,0,1,2]:
     car_frames.append(cell)
 car_sprite=Image.new('RGBA',(420*5,300),(0,0,0,0))
 for i,im in enumerate(car_frames):car_sprite.alpha_composite(im,(i*420,0))
-car_sprite.save(OUT/'porsche-sprite-hq.webp','WEBP',quality=84,method=6)
+car_sprite.save(OUT/'porsche-sprite-hq.webp','WEBP',quality=85,method=6)
 
 print('Built:',*(p.name for p in OUT.glob('*.webp')))
