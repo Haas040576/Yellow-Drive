@@ -4,6 +4,7 @@
   const car = document.querySelector('#car');
   const shadow = document.querySelector('#carShadow');
   const light = document.querySelector('#roadLight');
+  const stations = [...document.querySelectorAll('.drive-station')];
   if (!drive || !road || !car) return;
 
   const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -11,8 +12,7 @@
   const smoothstep = t => { t = clamp(t); return t * t * (3 - 2 * t); };
   const lerp = (a, b, t) => a + (b - a) * t;
 
-  // Three motion holds are reserved for Anmeldung, Theorie and Praxis.
-  // For this version they stay visually empty so only the drive is judged.
+  // Three clean holds: Anmeldung, Theorie, Praxis.
   function travelled(p) {
     if (p < .24) return lerp(0, .27, smoothstep(p / .24));
     if (p < .31) return .27;
@@ -28,9 +28,23 @@
     return clamp(-rect.top / Math.max(1, rect.height - innerHeight));
   }
 
+  function stationOpacity(p, a, b) {
+    const fade = .014;
+    if (p < a - fade || p > b + fade) return 0;
+    if (p < a) return smoothstep((p - (a - fade)) / fade);
+    if (p > b) return 1 - smoothstep((p - b) / fade);
+    return 1;
+  }
+
   let target = reduced ? .5 : pageProgress();
   let current = target;
+  let carHeightVh = 24;
   let raf = 0;
+
+  function measureCar() {
+    const h = car.getBoundingClientRect().height;
+    if (h > 0 && innerHeight > 0) carHeightVh = (h / innerHeight) * 100;
+  }
 
   function draw() {
     raf = 0;
@@ -42,11 +56,23 @@
     const t = travelled(current);
     const carY = lerp(8, 74, t);
     const roadY = -t * 165;
+    const shadowY = carY + carHeightVh * .43;
+    const headlightY = carY + carHeightVh * .78;
 
     road.style.transform = `translate3d(0, ${roadY}vh, 0)`;
-    car.style.transform = `translate3d(-50%, ${carY}vh, 0) rotate(180deg)`;
-    if (shadow) shadow.style.transform = `translate3d(-50%, ${carY + 2.4}vh, 0)`;
-    if (light) light.style.transform = `translate3d(-50%, ${carY + 22}vh, 0)`;
+
+    // The source top-view already points nose-down. Do not rotate it: the
+    // Porsche now visibly drives forward in the same direction as the scroll.
+    car.style.transform = `translate3d(-50%, ${carY}vh, 0)`;
+    if (shadow) shadow.style.transform = `translate3d(-50%, ${shadowY}vh, 0)`;
+
+    // Headlight cone begins at the front/nose, never behind the rear axle.
+    if (light) light.style.transform = `translate3d(-50%, ${headlightY}vh, 0)`;
+
+    stations.forEach(el => {
+      const [a, b] = el.dataset.range.split(',').map(Number);
+      el.style.opacity = stationOpacity(current, a, b).toFixed(3);
+    });
 
     if (current !== target) request();
   }
@@ -61,7 +87,8 @@
   }
 
   addEventListener('scroll', onScroll, { passive: true });
-  addEventListener('resize', onScroll, { passive: true });
-  car.addEventListener('load', request, { once: true });
+  addEventListener('resize', () => { measureCar(); onScroll(); }, { passive: true });
+  car.addEventListener('load', () => { measureCar(); request(); }, { once: true });
+  measureCar();
   request();
 })();
