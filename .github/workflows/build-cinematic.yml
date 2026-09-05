@@ -23,7 +23,7 @@ jobs:
       - name: Install render dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y xvfb libgl1 libegl1 ffmpeg blender
+          sudo apt-get install -y xvfb libgl1 libegl1 ffmpeg blender python3-numpy
           python -m pip install --upgrade pip
           pip install pillow numpy opencv-python-headless vtk
       - name: Prepare the same Porsche 911 Carrera 4S without Draco compression
@@ -32,7 +32,8 @@ jobs:
           curl -L --fail --retry 3 \
             https://raw.githubusercontent.com/playcanvas/web-components/main/examples/assets/models/porsche-911-carrera-4s.glb \
             -o .cinematic-build/porsche-draco.glb
-          blender --background --python-expr "import bpy; bpy.ops.import_scene.gltf(filepath=r'${GITHUB_WORKSPACE}/.cinematic-build/porsche-draco.glb'); bpy.ops.export_scene.gltf(filepath=r'${GITHUB_WORKSPACE}/.cinematic-build/porsche-uncompressed.glb', export_format='GLB', export_draco_mesh_compression_enable=False)"
+          blender --background --python-expr "import sys; sys.path.append('/usr/lib/python3/dist-packages'); import numpy; import bpy; bpy.ops.import_scene.gltf(filepath=r'${GITHUB_WORKSPACE}/.cinematic-build/porsche-draco.glb'); bpy.ops.export_scene.gltf(filepath=r'${GITHUB_WORKSPACE}/.cinematic-build/porsche-uncompressed.glb', export_format='GLB', export_draco_mesh_compression_enable=False)"
+          test -s .cinematic-build/porsche-uncompressed.glb
           python - <<'PY'
           from pathlib import Path
           p=Path('tools/build_web_cinematic.py')
@@ -44,7 +45,9 @@ jobs:
           p.write_text(s.replace(old,new,1))
           PY
       - name: Render website assets from selected source assets
-        run: xvfb-run -a python tools/build_web_cinematic.py
+        run: |
+          xvfb-run -a python tools/build_web_cinematic.py
+          test $(stat -c%s assets/cinematic/porsche-sprite-hq.webp) -gt 20000
       - name: Commit rendered assets
         run: |
           git restore tools/build_web_cinematic.py
