@@ -20,12 +20,10 @@ jobs:
       - name: Install render dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y xvfb libgl1 libegl1
+          sudo apt-get install -y xvfb libgl1 libegl1 ffmpeg
           python -m pip install --upgrade pip
           pip install pillow numpy opencv-python-headless vtk
       - name: Render website assets from selected source assets
-        env:
-          OPENCV_IO_ENABLE_OPENEXR: '1'
         run: xvfb-run -a python tools/build_web_cinematic.py
       - name: Commit rendered assets
         run: |
