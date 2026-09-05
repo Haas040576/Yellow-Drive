@@ -7,6 +7,9 @@ on:
       - '.github/workflows/build-cinematic.yml'
 permissions:
   contents: write
+concurrency:
+  group: cinematic-build-${{ github.ref }}
+  cancel-in-progress: true
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -34,5 +37,6 @@ jobs:
             echo 'No asset changes.'
           else
             git commit -m 'Render cinematic assets from selected source files'
+            git pull --rebase origin cinematic-demo
             git push origin HEAD:cinematic-demo
           fi
