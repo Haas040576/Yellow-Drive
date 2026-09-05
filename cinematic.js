@@ -20,15 +20,16 @@
     });
   });
 
-  // Three clean holds: Anmeldung, Theorie, Praxis.
+  // Longer drive phases and noticeably longer holds at the three stations.
+  // The car physically stops while each light pool and label remains visible.
   function travelled(p) {
-    if (p < .24) return lerp(0, .27, smoothstep(p / .24));
-    if (p < .31) return .27;
-    if (p < .51) return lerp(.27, .53, smoothstep((p - .31) / .20));
-    if (p < .58) return .53;
-    if (p < .78) return lerp(.53, .78, smoothstep((p - .58) / .20));
-    if (p < .85) return .78;
-    return lerp(.78, 1, smoothstep((p - .85) / .15));
+    if (p < .22) return lerp(0, .27, smoothstep(p / .22));
+    if (p < .34) return .27;
+    if (p < .48) return lerp(.27, .53, smoothstep((p - .34) / .14));
+    if (p < .60) return .53;
+    if (p < .74) return lerp(.53, .78, smoothstep((p - .60) / .14));
+    if (p < .86) return .78;
+    return lerp(.78, 1, smoothstep((p - .86) / .14));
   }
 
   function pageProgress() {
@@ -37,7 +38,7 @@
   }
 
   function stationOpacity(p, a, b) {
-    const fade = .014;
+    const fade = .022;
     if (p < a - fade || p > b + fade) return 0;
     if (p < a) return smoothstep((p - (a - fade)) / fade);
     if (p > b) return 1 - smoothstep((p - b) / fade);
@@ -58,23 +59,18 @@
     raf = 0;
     if (reduced) return;
 
-    current += (target - current) * .115;
+    current += (target - current) * .105;
     if (Math.abs(target - current) < .00008) current = target;
 
     const t = travelled(current);
     const carY = lerp(8, 74, t);
-    const roadY = -t * 165;
+    const roadY = -t * 190;
     const shadowY = carY + carHeightVh * .43;
     const headlightY = carY + carHeightVh * .78;
 
     road.style.transform = `translate3d(0, ${roadY}vh, 0)`;
-
-    // The source top-view already points nose-down. No rotation: the Porsche
-    // now drives forward in the same direction as the scroll.
     car.style.transform = `translate3d(-50%, ${carY}vh, 0)`;
     if (shadow) shadow.style.transform = `translate3d(-50%, ${shadowY}vh, 0)`;
-
-    // The light cone starts at the nose and projects in front of the car.
     if (light) light.style.transform = `translate3d(-50%, ${headlightY}vh, 0)`;
 
     stations.forEach(el => {
