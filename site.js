@@ -1,4 +1,12 @@
 (() => {
+  // Load UI refinements without touching the approved opening animation.
+  if (!document.querySelector('link[href="ui-fixes.css"]')) {
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = 'ui-fixes.css';
+    document.head.appendChild(link);
+  }
+
   const revealItems = [...document.querySelectorAll('.reveal')];
   if (revealItems.length) {
     if (matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) {
@@ -32,7 +40,16 @@
     car: 'https://raw.githubusercontent.com/playcanvas/web-components/main/examples/assets/models/porsche-911-carrera-4s.glb'
   };
 
+  // These are the exact public Sketchfab models from the ZIP files supplied by the user.
+  const sketchfabModels = {
+    motorcycle: '7b3343ad0c0f4cbe94238c734e1b731a',
+    scooter: '930f4ddc472640709e9b3567dccc63e0',
+    trailer: 'b2dd63b6c34d4a3a934abcafa6924b98',
+    tractor: '38625f3e0fd0465bb7cc99de89590071'
+  };
+
   const title = document.getElementById('consoleTitle');
+  const copy = title?.closest('.console-copy');
   const subtitle = document.getElementById('consoleSubtitle');
   const price = document.getElementById('consolePrice');
   const age = document.getElementById('consoleAge');
@@ -43,19 +60,78 @@
   const shell = document.getElementById('consoleVehicleShell');
   const vehicle = document.getElementById('consoleVehicle');
   const placeholder = document.getElementById('vehiclePlaceholder');
-  const placeholderCode = document.getElementById('placeholderCode');
   const indexEl = document.getElementById('consoleIndex');
   const progressBar = document.getElementById('consoleProgressBar');
   const carousel = document.getElementById('licenseCarousel');
   let activeIndex = 0;
+  let sketchfabFrame = null;
 
-  function switchLicense(nextIndex) {
+  if (shell) {
+    const badge = document.createElement('div');
+    badge.className = 'console-active-mobile';
+    badge.innerHTML = '<span>Aktive Klasse</span><strong id="mobileActiveClass">B</strong>';
+    shell.appendChild(badge);
+
+    sketchfabFrame = document.createElement('iframe');
+    sketchfabFrame.className = 'sketchfab-vehicle';
+    sketchfabFrame.title = '3D Fahrzeugansicht';
+    sketchfabFrame.allow = 'autoplay; fullscreen; xr-spatial-tracking';
+    sketchfabFrame.setAttribute('allowfullscreen', '');
+    sketchfabFrame.setAttribute('loading', 'lazy');
+    shell.appendChild(sketchfabFrame);
+  }
+
+  const mobileActive = () => document.getElementById('mobileActiveClass');
+
+  function centerActiveChip(chip, smooth = true) {
+    if (!carousel || !chip) return;
+    const target = chip.offsetLeft - (carousel.clientWidth - chip.offsetWidth) / 2;
+    carousel.scrollTo({ left: Math.max(0, target), behavior: smooth ? 'smooth' : 'auto' });
+  }
+
+  function sketchfabSrc(uid) {
+    return `https://sketchfab.com/models/${uid}/embed?autostart=1&preload=1&ui_infos=0&ui_controls=0&ui_stop=0&ui_inspector=0&ui_watermark=0&ui_watermark_link=0&ui_help=0&ui_settings=0&ui_fullscreen=0&ui_annotations=0&transparent=1&autospin=0.08`;
+  }
+
+  function showVehicle(item) {
+    const localSrc = vehicleSources[item.vehicle];
+    const sketchfabUid = sketchfabModels[item.vehicle];
+
+    if (localSrc && vehicle) {
+      shell?.classList.remove('uses-sketchfab');
+      vehicle.hidden = false;
+      placeholder && (placeholder.hidden = true);
+      sketchfabFrame?.classList.remove('is-active');
+      if (vehicle.getAttribute('src') !== localSrc) vehicle.setAttribute('src', localSrc);
+      vehicle.setAttribute('alt', `${item.type} – Beispiel-Fahrzeug`);
+      return;
+    }
+
+    if (sketchfabUid && sketchfabFrame) {
+      shell?.classList.add('uses-sketchfab');
+      vehicle && (vehicle.hidden = false);
+      placeholder && (placeholder.hidden = true);
+      const nextSrc = sketchfabSrc(sketchfabUid);
+      if (sketchfabFrame.src !== nextSrc) sketchfabFrame.src = nextSrc;
+      sketchfabFrame.classList.add('is-active');
+      sketchfabFrame.title = `${item.type} – 3D Fahrzeugansicht`;
+      return;
+    }
+
+    shell?.classList.remove('uses-sketchfab');
+    vehicle && (vehicle.hidden = true);
+    sketchfabFrame?.classList.remove('is-active');
+    if (placeholder) placeholder.hidden = false;
+  }
+
+  function switchLicense(nextIndex, smoothChip = true) {
     activeIndex = (nextIndex + licenses.length) % licenses.length;
     const item = licenses[activeIndex];
     shell?.classList.add('is-switching');
 
     setTimeout(() => {
       if (title) title.textContent = item.key;
+      copy?.classList.toggle('is-long-code', item.key.length >= 4);
       if (subtitle) subtitle.textContent = item.type;
       if (price) price.textContent = item.price;
       if (age) age.textContent = item.age;
@@ -68,35 +144,33 @@
       }
       if (indexEl) indexEl.textContent = String(activeIndex + 1).padStart(2, '0');
       if (progressBar) progressBar.style.width = `${((activeIndex + 1) / licenses.length) * 100}%`;
+      if (mobileActive()) mobileActive().textContent = item.key;
 
+      let activeChip = null;
       document.querySelectorAll('.drive-chip').forEach((chip, i) => {
         const selected = i === activeIndex;
         chip.classList.toggle('is-active', selected);
         chip.setAttribute('aria-selected', String(selected));
-        if (selected) chip.scrollIntoView({ behavior:'smooth', block:'nearest', inline:'center' });
+        if (selected) activeChip = chip;
       });
+      // Scroll only the carousel itself. Never move the document viewport horizontally.
+      requestAnimationFrame(() => centerActiveChip(activeChip, smoothChip));
 
-      const src = vehicleSources[item.vehicle];
-      if (src && vehicle) {
-        vehicle.hidden = false;
-        placeholder.hidden = true;
-        if (vehicle.getAttribute('src') !== src) vehicle.setAttribute('src', src);
-        vehicle.setAttribute('alt', `${item.type} – Beispiel-Fahrzeug`);
-      } else {
-        if (vehicle) vehicle.hidden = true;
-        if (placeholder) placeholder.hidden = false;
-        if (placeholderCode) placeholderCode.textContent = item.key;
-      }
-      setTimeout(() => shell?.classList.remove('is-switching'), 80);
-    }, 180);
+      showVehicle(item);
+      setTimeout(() => shell?.classList.remove('is-switching'), 100);
+    }, 160);
   }
 
   document.querySelectorAll('.drive-chip').forEach((chip, i) => chip.addEventListener('click', () => switchLicense(i)));
-  document.querySelectorAll('[data-license-prev]').forEach(btn => btn.addEventListener('click', () => switchLicense(activeIndex - 1)));
-  document.querySelectorAll('[data-license-next]').forEach(btn => btn.addEventListener('click', () => switchLicense(activeIndex + 1)));
+  document.querySelectorAll('[data-license-prev]').forEach(btn => btn.addEventListener('click', e => { e.preventDefault(); switchLicense(activeIndex - 1); }));
+  document.querySelectorAll('[data-license-next]').forEach(btn => btn.addEventListener('click', e => { e.preventDefault(); switchLicense(activeIndex + 1); }));
 
+  // Swipe the shell only when the local Porsche viewer is active. Sketchfab keeps its own 3D drag gesture.
   let touchStartX = null;
-  shell?.addEventListener('touchstart', e => { touchStartX = e.touches[0]?.clientX ?? null; }, { passive:true });
+  shell?.addEventListener('touchstart', e => {
+    if (sketchfabModels[licenses[activeIndex].vehicle]) return;
+    touchStartX = e.touches[0]?.clientX ?? null;
+  }, { passive:true });
   shell?.addEventListener('touchend', e => {
     if (touchStartX == null) return;
     const x = e.changedTouches[0]?.clientX ?? touchStartX;
@@ -183,5 +257,15 @@
 
   form?.addEventListener('submit', e => { e.preventDefault(); submitQuestion(input?.value || ''); });
   document.querySelectorAll('[data-chat-question]').forEach(btn => btn.addEventListener('click', () => submitQuestion(btn.dataset.chatQuestion || '')));
-  switchLicense(0);
+
+  // Discreet legal credits for the user-supplied CC BY vehicle models.
+  const footer = document.querySelector('footer');
+  if (footer && !footer.querySelector('.vehicle-credits')) {
+    const credits = document.createElement('span');
+    credits.className = 'vehicle-credits';
+    credits.textContent = '3D: Yamaha R1 — ejsnowy · Scooter — Sketchfab helper · Trailer — jimbogies · Tractor sgw3 — mamont nikita · CC BY 4.0';
+    footer.appendChild(credits);
+  }
+
+  switchLicense(0, false);
 })();
