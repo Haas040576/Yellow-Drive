@@ -1,0 +1,40 @@
+name: Build cinematic assets
+on:
+  push:
+    branches: [cinematic-demo]
+    paths:
+      - 'tools/build_web_cinematic.py'
+      - '.github/workflows/build-cinematic.yml'
+permissions:
+  contents: write
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: cinematic-demo
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install render dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y xvfb libgl1 libegl1
+          python -m pip install --upgrade pip
+          pip install pillow numpy opencv-python-headless vtk
+      - name: Render website assets from selected source assets
+        env:
+          OPENCV_IO_ENABLE_OPENEXR: '1'
+        run: xvfb-run -a python tools/build_web_cinematic.py
+      - name: Commit rendered assets
+        run: |
+          git config user.name 'Yellow Drive Asset Builder'
+          git config user.email 'actions@users.noreply.github.com'
+          git add assets/cinematic/*.webp
+          if git diff --cached --quiet; then
+            echo 'No asset changes.'
+          else
+            git commit -m 'Render cinematic assets from selected source files'
+            git push origin HEAD:cinematic-demo
+          fi
