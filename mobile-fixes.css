@@ -1,0 +1,11 @@
+html,body{width:100%;max-width:100%;overflow-x:hidden;overscroll-behavior-x:none}
+body{position:relative}
+main,.drive,.drive-stage,.site-content,footer{width:100%;max-width:100vw;overflow-x:hidden}
+.drive,.drive-stage{touch-action:pan-y pinch-zoom}
+@supports(overflow:clip){html,body,main,.drive,.drive-stage,.site-content,footer{overflow-x:clip}}
+@media(max-width:760px){
+  .road-scene{left:0!important;width:100vw!important;background-size:170vw auto!important;background-position:center top!important}
+  .topbar{width:100vw;max-width:100vw;overflow:hidden}
+  .drive-stage>*{max-width:100vw}
+  .lamp,.lamp-pool,.station-copy{contain:layout paint}
+}
