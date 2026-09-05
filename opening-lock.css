@@ -1,0 +1,16 @@
+/* Hard-lock the approved opening animation to its proven working geometry/assets. */
+.drive{position:relative;height:1120vh!important;background:#050705!important;overflow:visible!important}
+.drive-stage{position:sticky!important;top:0!important;height:100svh!important;overflow:hidden!important;background:#050705!important;isolation:isolate!important}
+.scene-bed{position:absolute!important;inset:0!important;background:linear-gradient(90deg,#020302 0%,#0a0e0b 17%,#10150f 50%,#0a0e0b 83%,#020302 100%)!important}
+.road-scene{position:absolute!important;z-index:1!important;left:0!important;top:-250vh!important;width:100%!important;height:760vh!important;background-image:url('https://raw.githubusercontent.com/Haas040576/Yellow-Drive/87f2c3648fbf425978010155510f619b1de2041d/assets/cinematic/road-top.webp')!important;background-repeat:repeat-y!important;background-position:center top!important;background-size:100% auto!important;will-change:transform!important;transform:translate3d(0,0,0)}
+.car{position:absolute!important;z-index:5!important;left:50%!important;top:0!important;width:clamp(92px,12vw,176px)!important;height:auto!important;max-width:none!important;transform:translate3d(-50%,9vh,0);filter:drop-shadow(0 15px 18px rgba(0,0,0,.58))!important;will-change:transform!important}
+.car-shadow{position:absolute!important;z-index:4!important;left:50%!important;top:0!important;width:clamp(74px,10vw,148px)!important;height:clamp(110px,15vw,210px)!important;max-width:none!important;border-radius:50%!important;background:rgba(0,0,0,.34)!important;filter:blur(14px)!important;will-change:transform!important}
+.road-light{position:absolute!important;z-index:3!important;left:50%!important;top:0!important;width:min(26vw,300px)!important;height:34vh!important;max-width:none!important;opacity:.3!important;filter:blur(10px)!important;background:linear-gradient(180deg,rgba(255,242,190,.22) 0%,rgba(255,242,190,.11) 34%,rgba(255,242,190,0) 100%)!important;clip-path:polygon(42% 0,58% 0,100% 100%,0 100%)!important}
+.drive-stage>.night-grade,.drive-stage>.edge-vignette{max-width:none!important}
+@media(max-width:760px){
+ .drive{height:1040vh!important}
+ .road-scene{left:-35vw!important;width:170vw!important;top:-250vh!important;height:760vh!important;background-size:100% auto!important;background-position:center top!important}
+ .car{width:118px!important}
+ .road-light{width:44vw!important}
+ .drive-stage>*{max-width:none!important}
+}
