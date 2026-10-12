@@ -27,7 +27,7 @@ Browser danach mit `Cmd + Shift + R` neu laden. Wenn der Webserver nicht läuft,
 
 Die lokale Seite verwendet zur Vorschau einen Full-HD-Fahrclip von Pexels ([Quelle](https://www.pexels.com/video/dramatic-highway-drive-at-sunset-30764435/)), der über eine externe URL geladen wird. Wenn der Clip nicht erreichbar ist, erscheint eine animierte Routenvisualisierung. Ein eigenes dreiteiliges Video kann in `assets/yellow-drive-journey.mp4` abgelegt werden (empfohlen: 16:9, H.264/MP4, 8–12 Sekunden, All-Intra) und hat Vorrang vor dem Stockclip.
 
-Die Hero-Stationen heißen Anmeldung, Theorie und Praxis. Die Website enthält die aus der vorherigen GitHub-Version übernommenen Führerscheinklassen und Kontaktdaten.
+Der Film läuft **nicht automatisch**. Im 12-Sekunden-Scrollablauf wechseln nur beim Scrollen die Standbilder. Die drei schlanken Hero-Titel erscheinen bei Anmeldung (Sekunde 0–4), Theorie (Sekunde 4–8) und Praxis (Sekunde 8–12). Es gibt keinen großen Glaskasten im Hero. Ist das Video kürzer als zwölf Sekunden, wird seine Gesamtlänge gleichmäßig auf die drei Stationen aufgeteilt. Das externe Standard-MP4 kann beim Spulen wegen der Videokompression gelegentlich verzögert reagieren; für möglichst flüssiges, bildgenaues Scrubbing ist ein selbst gehostetes All-Intra-MP4 ideal. Die Website enthält weiterhin alle Führerscheinklassen und Kontaktdaten.
 
 ## Vor einem öffentlichen Livegang
 
