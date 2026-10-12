@@ -429,7 +429,7 @@ function attach(src,allowRemoteFallback){
   };
   clip.onloadeddata=showVideo;
   clip.oncanplay=showVideo;
-  clip.onplay=()=>{clip.pause();};
+  // No play listener: iOS can briefly unlock a still video, then pause immediately.
   clip.onerror=()=>{
     stage.classList.remove('has-video');videoReady=false;
     if(allowRemoteFallback && src!==PREVIEW_VIDEO_URL)attach(PREVIEW_VIDEO_URL,false);
@@ -471,10 +471,12 @@ async function cachePreviewForScrubbing(){
 }
 loadVideoIfPresent();
 // On iOS, the first user gesture can unlock video frame rendering. Pause immediately.
+let unlocked=false;
 function unlock(){
-  if(!clip.src)return;
+  if(unlocked || !clip.src || clip.readyState===0)return;
+  unlocked=true;
   const p=clip.play();
-  if(p&&typeof p.then==='function')p.then(()=>{clip.pause();try{clip.currentTime=seekTo;}catch(e){}}).catch(()=>{});
+  if(p&&typeof p.then==='function')p.then(()=>{clip.pause();try{clip.currentTime=seekTo;}catch(e){}}).catch(()=>{clip.pause();});
   else clip.pause();
 }
 ['touchstart','pointerdown','wheel','keydown'].forEach(type=>addEventListener(type,unlock,{once:true,passive:true}));
