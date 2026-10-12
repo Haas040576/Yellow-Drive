@@ -75,7 +75,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue",Helvetica,Ari
 .brand-name{font-size:19px;font-weight:730;letter-spacing:-.07em}
 .desktop-nav a{font-size:13px;color:#4c5e4d}
 .nav-cta{height:41px;min-height:41px;padding-inline:19px}
-/* Cinematic, scroll-linked hero with a glass editorial text pane */
+/* Cinematic, scroll-linked hero with unobstructed titles */
 .story{height:350vh;min-height:2080px}
 .story-stage{background:#dbe3d7;min-height:520px}
 .stage-film{object-position:58% center;filter:contrast(1.035) saturate(.85);}
@@ -265,6 +265,38 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue",Helvetica,Ari
 }
 @media(prefers-reduced-motion:reduce){.class-card{transition:none}.story-stage .stage-film{transition:none}}
 
+
+/* Hero V3: show only three pure titles. The whole frame is a scroll-scrubbed film,
+   not a card carousel. Titles correspond to 0–4, 4–8 and 8–12 video seconds. */
+.story{height:370vh;min-height:2050px}
+.scene{align-items:center;justify-content:center;text-align:center;padding:100px 24px 126px}
+.scene::before{content:none!important;display:none!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
+.scene .eyebrow,.scene .sentence,.scene .btn{display:none!important}
+.scene h1{font-size:clamp(68px,11vw,156px);max-width:100%;line-height:1;letter-spacing:-.07em;font-weight:500;color:#203025;text-shadow:0 3px 38px rgba(255,255,255,.35)}
+.story-stage.has-video .scene h1{color:#fff;text-shadow:0 3px 30px rgba(0,0,0,.35),0 1px 7px rgba(0,0,0,.14)}
+.story-stage.has-video .stage-wash{background:linear-gradient(to bottom,rgba(0,0,0,.21) 0%,rgba(0,0,0,.08) 31%,rgba(0,0,0,.16) 76%,rgba(0,0,0,.38) 100%)}
+.stage-wash{background:linear-gradient(to bottom,rgba(233,241,231,.10),rgba(233,241,231,.04) 55%,rgba(224,235,224,.42))}
+.hero-signature{border:0;background:transparent;backdrop-filter:none;-webkit-backdrop-filter:none;box-shadow:none;padding:0}
+.story-stage.has-video .hero-signature{color:#fff;text-shadow:0 1px 8px rgba(0,0,0,.4)}
+.scene-progress{justify-content:center;bottom:clamp(36px,4.8vw,64px)}
+.scene-progress .scroll-hint{display:none}
+.stations{padding:0;gap:clamp(18px,3.5vw,48px);background:transparent;border:0;border-radius:0;box-shadow:none;backdrop-filter:none;-webkit-backdrop-filter:none}
+.station{padding:8px 2px;min-height:38px;font-size:13px;letter-spacing:.012em;font-weight:500;color:#425443;border:0;border-bottom:1px solid transparent;border-radius:0;background:transparent;box-shadow:none}
+.station.active{background:transparent;color:#1b2d20;border-color:currentColor;box-shadow:none}
+.story-stage.has-video .station{color:rgba(255,255,255,.69);text-shadow:0 1px 9px rgba(0,0,0,.35)}
+.story-stage.has-video .station.active{color:#fff}
+.film-note{background:transparent;border:0;backdrop-filter:none;-webkit-backdrop-filter:none;color:#fff;bottom:11px;right:16px;opacity:.65}
+@media(max-width:760px){
+ .story{height:340vh;min-height:1750px}
+ .scene{padding:120px 18px 145px}
+ .scene h1{font-size:clamp(58px,15vw,108px)}
+ .scene::before{content:none!important;display:none!important}
+ .scene-progress{bottom:31px;width:calc(100% - 32px)}
+ .stations{width:100%;justify-content:space-between;gap:10px}
+ .station{flex:1;padding:8px 0;font-size:12px}
+ .story-stage.has-video .stage-wash{background:linear-gradient(to bottom,rgba(0,0,0,.24),rgba(0,0,0,.04) 35%,rgba(0,0,0,.13) 70%,rgba(0,0,0,.42))}
+}
+@media(max-width:520px){.scene h1{font-size:clamp(53px,15vw,78px)}}
 </style>
 </head>
 <body>
@@ -343,17 +375,32 @@ $$('[data-legal]').forEach(el=>el.addEventListener('click',e=>{e.preventDefault(
 $('#contact-form').addEventListener('submit',event=>{event.preventDefault();const data=new FormData(event.currentTarget);const subject='Führerschein-Anfrage: '+data.get('license');const body=['Name: '+data.get('name'),'Telefon: '+data.get('phone'),'E-Mail: '+(data.get('email')||'–'),'Wunschklasse: '+data.get('license'),'Erreichbar: '+(data.get('time')||'–'),'','Nachricht:',data.get('message')||'–'].join('\n');$('#form-status').textContent='Dein E-Mail-Programm wird geöffnet. Bitte sende die vorbereitete Nachricht dort ab.';window.location.href='mailto:stefanbartl@gmx.net?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(body);});
 // Technical scroll-scrub concept adapted from the user-supplied video-scroller brief.
 const story=$('#start'),stage=$('#stage'),clip=$('#hero-video'),scenes=$$('[data-scene]'),stationBtns=$$('[data-jump]'),roadStops=$$('[data-road-stop]'),car=$('#road-car'),road=$('#road-path'),meter=$('#hero-progress');
-const CUES=[[0,0,.18,.27],[.31,.40,.59,.68],[.72,.81,1.05,1.14]]; // Deliberate visual gaps between panels show only footage/road.
+// A twelve-second scroll timeline: Anmeldung 0–4 s, Theorie 4–8 s, Praxis 8–12 s.
+const HERO_SECONDS=12, SEGMENT_SECONDS=4;
+const CUES=[[0,0,3.70/12,4/12],[4/12,4.30/12,7.70/12,8/12],[8/12,8.30/12,1.02,1.02]];
 const clamp=(x,a,b)=>Math.max(a,Math.min(b,x));const smooth=t=>t*t*(3-2*t);const ramp=(p,a,b)=>b<=a?(p>=b?1:0):smooth(clamp((p-a)/(b-a),0,1));
-let progress=0,videoDuration=0,seekAt=0,seekTo=0,videoReady=false,playingPreview=false;
-function readScroll(){const max=story.offsetHeight-innerHeight;progress=max>0?clamp(-story.getBoundingClientRect().top/max,0,1):0;if(videoDuration)seekTo=progress*Math.max(0,videoDuration-.035);}
-function updateScenes(){scenes.forEach((el,i)=>{const c=CUES[i];const enter=ramp(progress,c[0],c[1]);const leave=ramp(progress,c[2],c[3]);const opacity=enter*(1-leave);el.style.opacity=String(opacity);el.style.transform=`translate3d(0,${(1-enter)*25-leave*25}px,0)`;el.style.pointerEvents=opacity>.6?'auto':'none';el.setAttribute('aria-hidden',opacity>.6?'false':'true');});
-const current=progress<.30?0:progress<.71?1:2;stationBtns.forEach((el,i)=>{el.classList.toggle('active',i===current);el.setAttribute('aria-pressed',String(i===current));});roadStops.forEach((el,i)=>el.classList.toggle('active',i===current));meter.style.transform=`scaleX(${progress})`;
+let progress=0,videoDuration=0,seekAt=0,seekTo=0,videoReady=false,activeObjectURL=null;
+function readScroll(){
+  const max=story.offsetHeight-innerHeight;
+  progress=max>0?clamp(-story.getBoundingClientRect().top/max,0,1):0;
+  // Limit the footage to 12 seconds; shorter films are distributed evenly across the three stations.
+  if(videoDuration)seekTo=progress*Math.min(HERO_SECONDS,Math.max(0,videoDuration-.05));
+}
+function updateScenes(){scenes.forEach((el,i)=>{const c=CUES[i];const enter=ramp(progress,c[0],c[1]);const leave=ramp(progress,c[2],c[3]);const opacity=enter*(1-leave);el.style.opacity=String(opacity);el.style.transform=`translate3d(0,${(1-enter)*18-leave*18}px,0) scale(${(0.982+0.018*opacity).toFixed(4)})`;el.style.pointerEvents=opacity>.6?'auto':'none';el.setAttribute('aria-hidden',opacity>.6?'false':'true');});
+const current=Math.min(2,Math.floor((progress*HERO_SECONDS)/SEGMENT_SECONDS));stationBtns.forEach((el,i)=>{el.classList.toggle('active',i===current);el.setAttribute('aria-pressed',String(i===current));});roadStops.forEach((el,i)=>el.classList.toggle('active',i===current));meter.style.transform=`scaleX(${progress})`;
 if(road && car && !stage.classList.contains('has-video')){const length=road.getTotalLength();const p=road.getPointAtLength(length*progress),p2=road.getPointAtLength(Math.min(length,length*progress+2));const angle=Math.atan2(p2.y-p.y,p2.x-p.x)*180/Math.PI+90;car.setAttribute('transform',`translate(${p.x.toFixed(2)} ${p.y.toFixed(2)}) rotate(${angle.toFixed(2)})`);}}
-function frame(){// Ease toward the intended video frame rather than seeking in hard jumps.
-if(videoReady&&videoDuration&&!playingPreview&&!document.hidden){const gap=seekTo-seekAt;if(Math.abs(gap)>.0008){seekAt+=gap*.115; if(clip.readyState>=2&&!clip.seeking){try{clip.currentTime=seekAt;}catch(e){}}}}
-updateScenes();requestAnimationFrame(frame);}
-stationBtns.forEach((b,i)=>b.addEventListener('click',()=>{const positions=[.035,.47,.91];const target=story.getBoundingClientRect().top+scrollY+(story.offsetHeight-innerHeight)*positions[i];scrollTo({top:target,behavior:matchMedia('(prefers-reduced-motion:reduce)').matches?'auto':'smooth'});}));
+function frame(){
+  // The movie stays paused. Its timeline advances or rewinds only as the user scrolls.
+  if(videoReady&&videoDuration&&!document.hidden){
+    const gap=seekTo-seekAt;
+    if(Math.abs(gap)>0.002 && clip.readyState>=2 && !clip.seeking){
+      seekAt+=gap*.18;
+      try{clip.currentTime=seekAt;}catch(e){}
+    }
+  }
+  updateScenes();requestAnimationFrame(frame);
+}
+stationBtns.forEach((b,i)=>b.addEventListener('click',()=>{const positions=[.04,.42,.76];const target=story.getBoundingClientRect().top+scrollY+(story.offsetHeight-innerHeight)*positions[i];scrollTo({top:target,behavior:matchMedia('(prefers-reduced-motion:reduce)').matches?'auto':'smooth'});}));
 addEventListener('scroll',readScroll,{passive:true});addEventListener('resize',readScroll);addEventListener('pageshow',readScroll);document.addEventListener('visibilitychange',()=>{if(!document.hidden){readScroll();seekAt=seekTo;}});
 // Optional local video: no unrelated demo footage is ever loaded. Replace with an all-intra (keyframe-every-frame) MP4 for instant accurate seeking.
 // A fully buffered blob seeks far faster than repeated HTTP range requests; the stream fallback also works when blob loading fails.
@@ -362,18 +409,31 @@ const LOCAL_VIDEO_URL='./assets/yellow-drive-journey.mp4';
 // On the published website use an approved self-hosted/local clip; see README + privacy notice.
 const PREVIEW_VIDEO_URL='https://videos.pexels.com/video-files/30764435/13159875_1920_1080_30fps.mp4';
 function attach(src,allowRemoteFallback){
-  // A single <video> is reused when a network source stalls; no perpetual loading overlay.
-  playingPreview=src===PREVIEW_VIDEO_URL;
-  clip.loop=playingPreview;
+  // Never autoplay or loop: both local and remote videos are controlled only via currentTime.
+  clip.pause();
+  clip.removeAttribute('autoplay');
+  clip.autoplay=false;
+  clip.loop=false;
   videoDuration=0;videoReady=false;seekAt=0;
+  stage.classList.remove('has-video');
   clip.onloadedmetadata=()=>{
-    videoDuration=Number.isFinite(clip.duration)?clip.duration:0;readScroll();seekAt=seekTo;
-    if(!playingPreview){clip.pause();try{clip.currentTime=seekAt;}catch(e){}}
-    else clip.play().catch(()=>{});
+    clip.pause();
+    videoDuration=Number.isFinite(clip.duration)?clip.duration:0;
+    readScroll();
+    seekAt=seekTo;
+    try{clip.currentTime=seekTo;}catch(e){}
   };
-  const showVideo=()=>{if(videoDuration>0){videoReady=true;stage.classList.add('has-video');if(playingPreview&&clip.paused)clip.play().catch(()=>{});}};
-  clip.onloadeddata=showVideo;clip.oncanplay=showVideo;
-  clip.onerror=()=>{stage.classList.remove('has-video');videoReady=false;if(allowRemoteFallback)attach(PREVIEW_VIDEO_URL,false);};
+  const showVideo=()=>{
+    clip.pause();
+    if(videoDuration>0){videoReady=true;stage.classList.add('has-video');}
+  };
+  clip.onloadeddata=showVideo;
+  clip.oncanplay=showVideo;
+  clip.onplay=()=>{clip.pause();};
+  clip.onerror=()=>{
+    stage.classList.remove('has-video');videoReady=false;
+    if(allowRemoteFallback && src!==PREVIEW_VIDEO_URL)attach(PREVIEW_VIDEO_URL,false);
+  };
   clip.src=src;clip.load();
 }
 async function loadVideoIfPresent(){
@@ -383,19 +443,40 @@ async function loadVideoIfPresent(){
       const controller=new AbortController(),abort=setTimeout(()=>controller.abort(),14000);
       try{
         const response=await fetch(LOCAL_VIDEO_URL,{signal:controller.signal});
-        if(!response.ok)throw Error('No local video');
+        if(!response.ok)throw Error('Local footage unavailable');
         const blob=await response.blob();clearTimeout(abort);
-        attach(URL.createObjectURL(blob),true);return;
+        activeObjectURL=URL.createObjectURL(blob);
+        attach(activeObjectURL,true);
+        return;
       }catch(e){clearTimeout(abort);attach(LOCAL_VIDEO_URL,true);return;}
     }
-  }catch(e){/* Local file not present. */}
-  // Remote stock footage plays continuously for smoothness (normal MP4 isn't all-intra).
-  // Once a local all-intra three-station clip is supplied, frame-accurate scroll scrubbing resumes.
+  }catch(e){/* Local video not configured. */}
+  // Display stream immediately while independently buffering the complete stock clip for smoother seeking.
   attach(PREVIEW_VIDEO_URL,false);
+  cachePreviewForScrubbing();
+}
+async function cachePreviewForScrubbing(){
+  const controller=new AbortController(),abort=setTimeout(()=>controller.abort(),20000);
+  try{
+    const response=await fetch(PREVIEW_VIDEO_URL,{signal:controller.signal,mode:'cors'});
+    if(!response.ok)throw Error('Preview cache unavailable');
+    const blob=await response.blob();
+    clearTimeout(abort);
+    // Never interrupt a local user-supplied video with the remote cache.
+    if(clip.src!==PREVIEW_VIDEO_URL) return;
+    activeObjectURL=URL.createObjectURL(blob);
+    attach(activeObjectURL,true);
+  }catch(e){/* Cross-origin or slow network: stream remains scroll-controlled. */}
+  finally{clearTimeout(abort);}
 }
 loadVideoIfPresent();
-// iOS may not paint frames from video that has never been played; nudge playback once on the first gesture.
-function unlock(){if(!clip.src)return;const p=clip.play();if(playingPreview)return; if(p&&typeof p.then==='function')p.then(()=>clip.pause()).catch(()=>{});else clip.pause();}
+// On iOS, the first user gesture can unlock video frame rendering. Pause immediately.
+function unlock(){
+  if(!clip.src)return;
+  const p=clip.play();
+  if(p&&typeof p.then==='function')p.then(()=>{clip.pause();try{clip.currentTime=seekTo;}catch(e){}}).catch(()=>{});
+  else clip.pause();
+}
 ['touchstart','pointerdown','wheel','keydown'].forEach(type=>addEventListener(type,unlock,{once:true,passive:true}));
 readScroll();updateScenes();requestAnimationFrame(frame);
 })();
